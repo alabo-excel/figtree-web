@@ -4,7 +4,7 @@ const ShopCard = ({ item }: { item: any }) => {
   const [num, setNum] = useState(0);
 
   return (
-    <div className='w-[30%]'>
+    <div className=''>
       <img onMouseEnter={() => setNum(1)} onMouseLeave={() => setNum(0)} className='w-full' src={'/assets/' + item.img[num]} alt="" />
       <div className='flex justify-between py-2 '>
         <div className=''>
