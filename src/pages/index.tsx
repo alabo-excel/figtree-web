@@ -2,7 +2,9 @@ import HeadingText from "@/components/HeadingText";
 import Slider from "@/components/Slider";
 import CategoryCard from "@/components/cards/CategoryCard";
 import ProductCard from "@/components/cards/ProductCard";
+import ReviewCard from "@/components/cards/ReviewCard";
 import MainLayout from "@/layout/MainLayout";
+import Link from "next/link";
 
 export default function Home() {
   const category = [
@@ -100,6 +102,19 @@ export default function Home() {
           </div>
           <div>
             <img className="w-[80%]" src="/assets/user.png" alt="" />
+          </div>
+        </div>
+        <div className="p-8">
+          <div>
+            <h2 className="text-3xl text-center">We Love Reviews.....</h2>
+            <p className="float-right">
+              <Link href={'/'}>See all</Link>
+            </p>
+          </div>
+          <div className="flex justify-between my-8">
+            <ReviewCard />
+            <ReviewCard />
+            <ReviewCard />
           </div>
         </div>
         <div className="my-20 relative">

@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     colors: {
       warning: '#FFCE07',
-      white: '#ffffff'
+      white: '#ffffff',
+      black: '#000000',
     }
   },
   plugins: [],
