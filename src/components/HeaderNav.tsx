@@ -24,7 +24,7 @@ const HeaderNav = () => {
             <div>Shop</div>
           </Link>
           <Link href={"/"}>
-            <div>Distributors</div>
+            <div>Where to buy</div>
           </Link>
           <Link href={"/"}>
             <div>About us</div>

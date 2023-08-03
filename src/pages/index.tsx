@@ -118,9 +118,9 @@ export default function Home() {
           </div>
         </div>
         <div className="my-20 relative">
-          <img src="/assets/cta.png" className="w-full h-[70vh]" alt="" />
-          <div className="w-full absolute top-0 left-0 right-0 bg-[#000000] opacity-50 h-[70vh]"></div>
-          <div className="absolute top-44 left-0 right-0 text-center">
+          <img src="/assets/cta.png" className="w-full h-[60vh]" alt="" />
+          <div className="w-full absolute top-0 left-0 right-0 bg-[#000000] opacity-50 h-[60vh]"></div>
+          <div className="absolute top-40 left-0 right-0 text-center">
             <h2 className="text-4xl text-white">Sign up & get up 10% discount</h2>
             <p className="text-white my-6">Sign up for instant discount & Shop you faves</p>
             <button className="p-3 my-3 rounded-md bg-warning px-10 ">Sign up</button>
