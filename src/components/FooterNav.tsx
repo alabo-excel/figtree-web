@@ -3,7 +3,7 @@ import React from 'react';
 
 const FooterNav = () => {
   return (
-    <div className='bg-black flex text-white p-8 justify-between'>
+    <div className='bg-black lg:flex text-white p-8 justify-between'>
       <div>
         <h2 className='text-3xl my-4'>FigTree</h2>
         <Link href={'/'}>
