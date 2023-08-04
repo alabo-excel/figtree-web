@@ -6,12 +6,20 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    colors: {
-      warning: '#FFCE07',
-      white: '#ffffff',
-      black: '#000000',
-      orange: '#F26122',
-    }
+    extend: {
+      colors: {
+        warning: '#FFCE07',
+        white: '#ffffff',
+        black: '#000000',
+        orange: '#F26122',
+      },
+      screens: {
+        sm: { max: "700px" },
+        md: "700px",
+        lg: "1024px",
+        xl: "1280px",
+      },
+    },
   },
   plugins: [],
 }

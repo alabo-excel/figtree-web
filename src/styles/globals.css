@@ -9,7 +9,11 @@ body {
   font-family: 'Playfair Display', serif;
 }
 
-h1, h2, p, button, div{
+h1,
+h2,
+p,
+button,
+div {
   font-family: 'Playfair Display', serif;
 }
 
@@ -18,4 +22,15 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+ol li {
+  list-style: decimal;
+  list-style-position: inside;
+}
+
+input:focus,
+textarea:focus,
+button:focus {
+  outline: none;
 }
