@@ -71,7 +71,7 @@ export default function Home() {
         <Slider />
         <section className="lg:mx-32 mx-4">
           <HeadingText text="Shop By Category" index="1" />
-          <div className="lg:flex justify-evenly">
+          <div className="flex flex-wrap justify-evenly">
             {category.map((item, index) => (
               <CategoryCard key={index} img={item.img} text={item.text} />
             ))}
@@ -100,27 +100,27 @@ export default function Home() {
             <p className="my-4">New products formulated to <br /> suit your specific needs </p>
             <button className="p-3 my-3 rounded-md bg-warning w-1/2 ">Shop here</button>
           </div>
-          <div>
+          <div className="sm:hidden">
             <img className="w-[80%]" src="/assets/user.png" alt="" />
           </div>
         </div>
-        <div className="p-8">
+        <div className="lg:p-8 p-4">
           <div>
             <h2 className="text-3xl text-center">We Love Reviews.....</h2>
             <p className="float-right">
               <Link href={'/'}>See all</Link>
             </p>
           </div>
-          <div className="flex justify-between my-8">
+          <div className="lg:flex justify-between my-8">
             <ReviewCard />
             <ReviewCard />
             <ReviewCard />
           </div>
         </div>
         <div className="my-20 relative">
-          <img src="/assets/cta.png" className="w-full h-[60vh]" alt="" />
-          <div className="w-full absolute top-0 left-0 right-0 bg-[#000000] opacity-50 h-[60vh]"></div>
-          <div className="absolute top-40 left-0 right-0 text-center">
+          <img src="/assets/cta.png" className="w-full lg:h-[60vh] h-[40vh]" alt="" />
+          <div className="w-full absolute top-0 left-0 right-0 bg-[#000000] opacity-50 lg:h-[60vh] h-[40vh]"></div>
+          <div className="absolute lg:top-40 top-6 left-0 right-0 text-center">
             <h2 className="text-4xl text-white">Sign up & get up 10% discount</h2>
             <p className="text-white my-6">Sign up for instant discount & Shop you faves</p>
             <button className="p-3 my-3 rounded-md bg-warning px-10 ">Sign up</button>

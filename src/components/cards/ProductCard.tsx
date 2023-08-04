@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const ProductCard = ({ item }: { item: any }) => {
   const [num, setNum] = useState(0);
   return (
-    <div className='w-[24%]'>
+    <div className='lg:w-[24%] lg:my-0 my-4'>
       <img onMouseEnter={() => setNum(1)} onMouseLeave={() => setNum(0)} className='w-full' src={'/assets/' + item.img[num]} alt="" />
       <div className='flex justify-between py-3 border-b border-black'>
         <p>{item.title}</p>

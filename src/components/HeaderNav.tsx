@@ -23,7 +23,7 @@ const HeaderNav = () => {
           <Link href={"/"}>
             <div>Shop</div>
           </Link>
-          <Link href={"/"}>
+          <Link href={"/distributors"}>
             <div>Where to buy</div>
           </Link>
           <Link href={"/"}>

@@ -2,10 +2,10 @@ import React from 'react';
 
 const ReviewCard = () => {
   return (
-    <div className='w-[30%]'>
+    <div className='lg:w-[30%] lg:my-0 my-4'>
       <div className='flex'>
-        <img className='w-full' src="/assets/before.png" alt="" />
-        <img className='w-full' src="/assets/after.png" alt="" />
+        <img className='w-1/2' src="/assets/before.png" alt="" />
+        <img className='w-1/2' src="/assets/after.png" alt="" />
       </div>
       <div>
         <p className='text-[#F26122] text-lg text-center my-3'>Break out disappeared</p>

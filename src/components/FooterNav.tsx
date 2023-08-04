@@ -6,10 +6,10 @@ const FooterNav = () => {
     <div className='bg-black lg:flex text-white p-8 justify-between'>
       <div>
         <h2 className='text-3xl my-4'>FigTree</h2>
-        <Link href={'/'}>
+        <Link href={'/about'}>
           <p className='my-4'>About Us</p>
         </Link>
-        <Link href={'/'}>
+        <Link href={'/careers'}>
           <p className='my-4'>Careers</p>
         </Link>
         <Link href={'/'}>
@@ -21,25 +21,25 @@ const FooterNav = () => {
       </div>
       <div>
         <h2 className='text-3xl my-4'>Customer care</h2>
-        <Link href={'/'}>
+        <Link href={'/shipping-info'}>
           <p className='my-4'>Shipping info</p>
         </Link>
-        <Link href={'/'}>
+        <Link href={'/track'}>
           <p className='my-4'>Track your order</p>
         </Link>
-        <Link href={'/'}>
+        <Link href={'/contact'}>
           <p className='my-4'>Contact us</p>
         </Link>
-        <Link href={'/'}>
+        <Link href={'/faq'}>
           <p className='my-4'>Help & FAQs</p>
         </Link>
       </div>
       <div>
         <h2 className='text-3xl my-4'>Quick Links</h2>
-        <Link href={'/'}>
+        <Link href={'/blog'}>
           <p className='my-4'>Blog</p>
         </Link>
-        <Link href={'/'}>
+        <Link href={'/distributors'}>
           <p className='my-4'>Where to buy</p>
         </Link>
         <Link href={'/'}>
