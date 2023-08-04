@@ -54,11 +54,11 @@ const FooterNav = () => {
           <img className='w-6 h-6' src="/assets/icons/ri_twitter-line.png" alt="" />
         </div>
         <div className='my-4'>
-          <p className='text-warning'>Walk in Store</p>
+          <p className='text-orange'>Walk in Store</p>
           <p className='text-sm'>20A Emma Abimbola Cole Street, Lagos.</p>
         </div>
         <div className='my-4'>
-          <p className='text-warning'>Get in touch</p>
+          <p className='text-orange'>Get in touch</p>
           <p className='text-sm'>+234198071898</p>
         </div>
       </div>
