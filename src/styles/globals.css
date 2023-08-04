@@ -34,3 +34,9 @@ textarea:focus,
 button:focus {
   outline: none;
 }
+
+ul li{
+  list-style: disc;
+  list-style-position: inside;
+
+}
