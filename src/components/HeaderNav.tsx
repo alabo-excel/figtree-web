@@ -1,7 +1,12 @@
 import Link from 'next/link';
 import React from 'react';
+import AboutUs from './dropdowns/AboutUs';
+import Resources from './dropdowns/Resources';
+import Shop from './dropdowns/Shop';
 
 const HeaderNav = () => {
+
+
   return (
     <div>
       <div className='bg-black p-3'>
@@ -20,21 +25,33 @@ const HeaderNav = () => {
           <Link href={"/"}>
             <div>Home</div>
           </Link>
-          <Link href={"/"}>
+          <Shop />
+          {/* <Link href={"/"}>
             <div>Shop</div>
-          </Link>
+          </Link> */}
           <Link href={"/distributors"}>
             <div>Where to buy</div>
           </Link>
-          <Link href={"/"}>
+          <AboutUs />
+          <Resources />
+
+          {/* <Link href={"/"}>
             <div>About us</div>
-          </Link>
-          <Link href={"/"}>
+          </Link> */}
+          {/* <Link href={"/"}>
             <div>Resources</div>
-          </Link>
-          
+          </Link> */}
+
+
         </div>
-        <div></div>
+        <div className='flex'>
+          <Link href={'/login'}>
+            <img className='w-5 h-5 mx-2' src="/assets/icons/line-md_account.png" alt="" />
+          </Link>
+          <Link href={'/shop/cart'}>
+            <img className='w-5 h-5 mx-4' src="/assets/icons/cart.png" alt="" />
+          </Link>
+        </div>
       </div>
     </div>
   );

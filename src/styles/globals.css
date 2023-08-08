@@ -1,17 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
+@font-face {
+  font-family: 'Axiforma';
+  src: url(../../public/assets/fonts/Axiforma-Regular.ttf);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-body {
+/* body {
   font-family: 'Playfair Display', serif;
+} */
+
+p {
+  font-family: 'Axiforma' !important;
 }
 
 h1,
 h2,
-p,
 button,
 div {
   font-family: 'Playfair Display', serif;
@@ -35,7 +43,7 @@ button:focus {
   outline: none;
 }
 
-ul li{
+ul li {
   list-style: disc;
   list-style-position: inside;
 
