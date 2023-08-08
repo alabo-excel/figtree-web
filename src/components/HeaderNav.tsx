@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import AboutUs from './dropdowns/AboutUs';
 import Resources from './dropdowns/Resources';
 import Shop from './dropdowns/Shop';
 
 const HeaderNav = () => {
-
+  const [menu, setMenu] = useState(false)
 
   return (
     <div>
@@ -16,12 +16,16 @@ const HeaderNav = () => {
           <img className='w-6 h-6' src="/assets/icons/ri_twitter-line.png" alt="" />
         </div>
       </div>
-      <div className='w-[25%] mx-auto'>
+      <div className='lg:w-[25%] w-1/2 mx-auto'>
         <img src="/assets/logo-bg.png" alt="" />
       </div>
       <div className='flex justify-between'>
+        <div onClick={() => setMenu(!menu)} className='lg:hidden mx-4 md:hidden sm:block'>
+          {menu ? <img src="/assets/icons/close.png" className='w-4 my-1 cursor-pointer' alt="" /> : <img src="/assets/icons/hamburger.png" className='w-8 cursor-pointer' alt="" />
+          }
+        </div>
         <div></div>
-        <div className='flex w-[40%] justify-between'>
+        <div className='flex sm:hidden w-[40%] justify-between'>
           <Link href={"/"}>
             <div>Home</div>
           </Link>
@@ -53,6 +57,29 @@ const HeaderNav = () => {
           </Link>
         </div>
       </div>
+      {
+        menu && <div className='p-5'>
+          <div className='my-4'>
+            <Link href={"/"}>
+              <div>Home</div>
+            </Link>
+          </div>
+          <div className='my-4'>
+            <Shop />
+          </div>
+          <div className='my-4'>
+            <Link href={"/distributors"}>
+              <div>Where to buy</div>
+            </Link>
+          </div>
+          <div className='my-4'>
+            <AboutUs />
+          </div>
+          <div className='my-4'>
+            <Resources />
+          </div>
+        </div>
+      }
     </div>
   );
 };

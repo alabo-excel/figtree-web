@@ -3,9 +3,9 @@ import React from 'react';
 
 const FooterNav = () => {
   return (
-    <div className='bg-black lg:flex text-white p-8 justify-between'>
+    <div className='bg-black lg:flex text-white p-8 justify-between sm:text-sm'>
       <div>
-        <h2 className='text-3xl my-4'>FigTree</h2>
+        <h2 className='lg:text-3xl text-xl my-4'>FigTree</h2>
         <Link href={'/about'}>
           <p className='my-4'>About Us</p>
         </Link>
@@ -20,7 +20,7 @@ const FooterNav = () => {
         </Link>
       </div>
       <div>
-        <h2 className='text-3xl my-4'>Customer care</h2>
+        <h2 className='lg:text-3xl text-xl my-4'>Customer care</h2>
         <Link href={'/shipping-info'}>
           <p className='my-4'>Shipping info</p>
         </Link>
@@ -35,7 +35,7 @@ const FooterNav = () => {
         </Link>
       </div>
       <div>
-        <h2 className='text-3xl my-4'>Quick Links</h2>
+        <h2 className='lg:text-3xl text-xl my-4'>Quick Links</h2>
         <Link href={'/blog'}>
           <p className='my-4'>Blog</p>
         </Link>
@@ -47,7 +47,7 @@ const FooterNav = () => {
         </Link>
       </div>
       <div>
-        <h2 className='text-3xl my-4'>Connect With Us</h2>
+        <h2 className='lg:text-3xl text-xl my-4'>Connect With Us</h2>
         <div className='w-28 my-4 flex justify-between'>
           <img className='w-6 h-6' src="/assets/icons/lucide_facebook.png" alt="" />
           <img className='w-6 h-6' src="/assets/icons/mdi_instagram.png" alt="" />
