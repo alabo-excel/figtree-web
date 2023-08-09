@@ -49,7 +49,7 @@ const HeaderNav = () => {
 
         </div>
         <div className='flex'>
-          <Link href={'/login'}>
+          <Link href={'/auth/login'}>
             <img className='w-5 h-5 mx-2' src="/assets/icons/line-md_account.png" alt="" />
           </Link>
           <Link href={'/shop/cart'}>
