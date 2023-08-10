@@ -3,10 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { setCount } from "@/store/slices/cartSlice.js"
 import { useDispatch } from 'react-redux';
 import { removeCart } from '@/store/slices/cartSlice';
+import axios from 'axios';
+import { getCookie } from 'cookies-next';
 
 const CartCard = ({ item, pos }: { item: ProductType, pos: React.Key | null | undefined }) => {
   const [count, setCoun] = useState<number | any>(item.count)
   const dispatch = useDispatch();
+  const author = getCookie('user')
 
   const remove = () => {
     dispatch(removeCart(pos))
@@ -19,6 +22,18 @@ const CartCard = ({ item, pos }: { item: ProductType, pos: React.Key | null | un
   useEffect(() => {
     setProductCount()
   }, [count])
+
+  const addSaved = async () => {
+    try {
+      const { data } = await axios.post('save', {
+        product: item._id,
+        author
+      })
+      console.log(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   return (
     <div className='flex'>
@@ -38,7 +53,7 @@ const CartCard = ({ item, pos }: { item: ProductType, pos: React.Key | null | un
         </div>
         <div className='flex text-orange'>
           <p onClick={() => remove()} className='cursor-pointer'>Delete</p>
-          <p className='ml-10 cursor-pointer'>Save for later</p>
+          <p onClick={() => addSaved()} className='ml-10 cursor-pointer'>Save for later</p>
         </div>
       </div>
     </div>

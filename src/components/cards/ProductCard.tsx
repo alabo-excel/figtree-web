@@ -11,7 +11,7 @@ const ProductCard = ({ item }: { item: any }) => {
         <img src="/assets/icons/favourite.png" alt="" />
       </div>
       <p className='my-2'>{item.price}</p>
-      <Link href={'/shop/single?page=' + item._id}>      <button className='p-3 rounded-sm w-full bg-warning'>Shop Now</button></Link>
+      <Link href={'/shop/single?page=' + item._id}><button className='p-3 rounded-sm w-full bg-warning'>Shop Now</button></Link>
     </div>
   );
 };

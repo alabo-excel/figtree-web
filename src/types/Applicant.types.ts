@@ -11,3 +11,10 @@ export interface ProductType {
   weight: number;
   date: Date;
 }
+
+export type Saved = {
+  _id: string;
+  author: string;
+  product: ProductType;
+  date: Date;
+}

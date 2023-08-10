@@ -16,6 +16,7 @@ const Login = () => {
       const { data } = await axios.post('login', { email, password })
       console.log(data)
       setCookie('token', data.token);
+      setCookie('user', data.id)
       router.push('/shop')
       setLoading(false)
     } catch (err) {

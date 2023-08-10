@@ -2,16 +2,37 @@ import ShopBanner from '@/components/ShopBanner';
 import CartCard from '@/components/cards/CartCard';
 import MainLayout from '@/layout/MainLayout';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectCart, setCount } from "@/store/slices/cartSlice.js"
 import { useDispatch } from 'react-redux';
 import { clearCart } from '@/store/slices/cartSlice';
 import { ProductType } from '@/types/Applicant.types';
+import { getCookie } from 'cookies-next';
+import axios from 'axios';
+import ProductCard from '@/components/cards/ProductCard';
 
 const Cart = () => {
   const cart = useSelector(selectCart)
   const dispatch = useDispatch();
+  const author = getCookie('user')
+  const [suggestion, setSuggestion] = useState<ProductType[]>([])
+
+  const getSuggestion = async () => {
+    try {
+      const { data } = await axios.get('product')
+      console.log(data)
+      setSuggestion(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  useEffect(() => {
+    getSuggestion()
+  }, [
+    author
+  ])
 
   return (
     <MainLayout>
@@ -35,6 +56,11 @@ const Cart = () => {
                 <p className='ml-8 cursor-pointer'>Buy it again</p>
               </div>
               <div className='border-t border-t-gray my-6'></div>
+              <div className='flex justify-between flex-wrap'>
+                {suggestion.slice(0, 8).map((item, index) =>
+                  <ProductCard item={item} key={index} />
+                )}
+              </div>
             </div>
           </div>
           <div className='w-[30%]'>
