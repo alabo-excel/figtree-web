@@ -3,8 +3,10 @@ import ShopCard from '@/components/cards/ShopCard';
 import MainLayout from '@/layout/MainLayout';
 import { ProductType } from '@/types/Applicant.types';
 import axios from 'axios';
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addCart } from '@/store/slices/cartSlice';
 
 const SingleProduct = () => {
   const [count, setCount] = useState<number | any>(1)
@@ -12,6 +14,7 @@ const SingleProduct = () => {
   const [product, setProduct] = useState<ProductType>()
   const [products, setProducts] = useState<ProductType[]>([])
   const { query } = useRouter()
+  const dispatch = useDispatch();
 
   const getProducts = async () => {
     try {
@@ -32,7 +35,12 @@ const SingleProduct = () => {
 
   useEffect(() => {
     getProducts()
-  }, [])
+  }, [query.page])
+
+  const addToCart = () => {
+    dispatch(addCart({ ...product, count: count }))
+    router.push('/shop/cart')
+  }
 
   return (
     <MainLayout>
@@ -54,7 +62,7 @@ const SingleProduct = () => {
                 <div onClick={() => setCount(count + 1)} className='absolute top-2 text-2xl cursor-pointer right-2'>+</div>
               </div>
             </div>
-            <button className='p-4 w-full bg-warning rounded-sm my-4'>Add to cart</button>
+            <button onClick={() => addToCart()} className='p-4 w-full bg-warning rounded-sm my-4'>Add to cart</button>
             <button className='p-4 w-full bg-black rounded-sm my-4 text-white'>Buy it now</button>
           </div>
         </div>
@@ -76,7 +84,7 @@ const SingleProduct = () => {
             <p className='text-2xl my-4'>Suggested for you</p>
             <div className="lg:flex justify-between">
               {products.map((item, index) => (
-                <ShopCard item={item} />
+                <ShopCard key={index} item={item} />
               ))}
             </div>
           </div>

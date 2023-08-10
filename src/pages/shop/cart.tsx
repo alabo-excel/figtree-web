@@ -3,15 +3,25 @@ import CartCard from '@/components/cards/CartCard';
 import MainLayout from '@/layout/MainLayout';
 import Link from 'next/link';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectCart, setCount } from "@/store/slices/cartSlice.js"
+import { useDispatch } from 'react-redux';
+import { clearCart } from '@/store/slices/cartSlice';
+import { ProductType } from '@/types/Applicant.types';
 
 const Cart = () => {
+  const cart = useSelector(selectCart)
+  const dispatch = useDispatch();
+
   return (
     <MainLayout>
       <div>
         <ShopBanner text="Shopping Cart" />
         <div className='flex p-8'>
           <div className='w-full'>
-            <CartCard />
+            {
+              cart.map((item: ProductType, index: React.Key | null | undefined) => <CartCard pos={index} key={index} item={item} />)
+            }
             <div className='border-t border-t-gray my-6'></div>
             <div className='float-right'>
               <p className='font-bold text-xl'>Subtotal (1 item): N4500</p>

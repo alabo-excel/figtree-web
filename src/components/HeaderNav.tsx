@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 import AboutUs from './dropdowns/AboutUs';
 import Resources from './dropdowns/Resources';
 import Shop from './dropdowns/Shop';
+import { useSelector } from 'react-redux';
+import { selectCart } from "@/store/slices/cartSlice.js"
 
 const HeaderNav = () => {
+  const cart = useSelector(selectCart)
   const [menu, setMenu] = useState(false)
 
   return (
@@ -52,9 +55,14 @@ const HeaderNav = () => {
           <Link href={'/auth/login'}>
             <img className='w-5 h-5 mx-2' src="/assets/icons/line-md_account.png" alt="" />
           </Link>
-          <Link href={'/shop/cart'}>
-            <img className='w-5 h-5 mx-4' src="/assets/icons/cart.png" alt="" />
-          </Link>
+          <div className='relative mr-4'>
+            <Link href={'/shop/cart'}>
+              <img className='w-5 h-5 mx-4' src="/assets/icons/cart.png" alt="" />
+            </Link>
+
+            {cart.length > 0 && <div className='absolute top-0 text-xs right-0 text-white h-5 text-center w-5 bg-red-500 rounded-full'>{cart.length}</div>}
+          </div>
+
         </div>
       </div>
       {
