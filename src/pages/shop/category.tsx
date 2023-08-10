@@ -8,10 +8,11 @@ import React, { useState, useEffect } from 'react';
 
 const Shop = () => {
   const [products, setProducts] = useState<ProductType[]>([])
+  const { query } = useRouter()
 
   const getProducts = async () => {
     try {
-      const { data } = await axios.get('product')
+      const { data } = await axios.get('product/category/' + query.page)
       console.log(data)
       setProducts(data)
     } catch (err) {
@@ -21,12 +22,12 @@ const Shop = () => {
 
   useEffect(() => {
     getProducts()
-  }, [])
+  }, [query.page])
 
   return (
     <MainLayout>
       <div>
-        <ShopBanner text="All Skincare" />
+        <ShopBanner text={query.page} />
         <div className='lg:mx-20'>
           <div className="lg:flex flex-wrap justify-between">
             {products.map((item, index) => (

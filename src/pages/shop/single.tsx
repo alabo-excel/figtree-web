@@ -21,13 +21,13 @@ const SingleProduct = () => {
     } catch (err) {
       console.log(err)
     }
-    // try {
-    //   const { data } = await axios.get(`product/suggest`)
-    //   console.log(data)
-    //   setProducts(data)
-    // } catch (err) {
-    //   console.log(err)
-    // }
+    try {
+      const { data } = await axios.get(`product/suggest`)
+      console.log(data)
+      setProducts(data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   useEffect(() => {

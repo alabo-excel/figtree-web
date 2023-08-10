@@ -10,8 +10,8 @@ const Shop = () => {
       label: (
         <div className='flex justify-between p-2 w-[550px]'>
           <Link href={'/shop'} className='mr-20 w-full'>All Skincare</Link>
-          <Link href={'/shop?page=lipcare'} className='mr-20 w-full'>Lipcare</Link>
-          <Link href={'/shop?page=scrubs'} className='w-full'>Scrubs</Link>
+          <Link href={'/shop/category?page=lipcare'} className='mr-20 w-full'>Lipcare</Link>
+          <Link href={'/shop/category?page=scrubs'} className='w-full'>Scrubs</Link>
         </div>
       ),
     },
@@ -19,9 +19,9 @@ const Shop = () => {
       key: '2',
       label: (
         <div className='flex justify-between p-2 text-left'>
-          <Link href={'/shop?page=custom-oils'} className='mr-20 w-full'>Custom Oils</Link>
-          <Link href={'/shop?page=moisturizers'} className='mr-20 w-full'>Moisturizers</Link>
-          <Link href={'/shop?page=serums'} className='w-full'>Serums</Link>
+          <Link href={'/shop/category?page=custom-oils'} className='mr-20 w-full'>Custom Oils</Link>
+          <Link href={'/shop/category?page=moisturizers'} className='mr-20 w-full'>Moisturizers</Link>
+          <Link href={'/shop/category?page=serums'} className='w-full'>Serums</Link>
         </div>
       ),
     },
@@ -29,9 +29,9 @@ const Shop = () => {
       key: '3',
       label: (
         <div className='flex justify-between p-2 text-left'>
-          <Link href={'/shop?page=face-cleaners'} className='mr-20 w-full'>Face Cleaners</Link>
-          <Link href={'/shop?page=pure-utters'} className='mr-20 w-full'>Pure Butters</Link>
-          <Link href={'/shop?page=soaps'} className='w-full'>Soaps</Link>
+          <Link href={'/shop/category?page=face-cleaners'} className='mr-20 w-full'>Face Cleaners</Link>
+          <Link href={'/shop/category?page=pure-utters'} className='mr-20 w-full'>Pure Butters</Link>
+          <Link href={'/shop/category?page=soaps'} className='w-full'>Soaps</Link>
         </div>
       ),
     },
@@ -39,9 +39,9 @@ const Shop = () => {
       key: '4',
       label: (
         <div className='flex justify-between p-2 text-left'>
-          <Link href={'/shop?page=face-wash'} className='mr-20 w-full'>Face Wash</Link>
-          <Link href={'/shop?page=pure-carrier-oils'} className='mr-20 w-full'>Pure Carrier Oils</Link>
-          <Link href={'/shop?page=sponges'} className='w-full'>Sponges</Link>
+          <Link href={'/shop/category?page=face-wash'} className='mr-20 w-full'>Face Wash</Link>
+          <Link href={'/shop/category?page=pure-carrier-oils'} className='mr-20 w-full'>Pure Carrier Oils</Link>
+          <Link href={'/shop/category?page=sponges'} className='w-full'>Sponges</Link>
         </div>
       ),
     },
@@ -49,16 +49,16 @@ const Shop = () => {
       key: '5',
       label: (
         <div className='flex justify-between p-2 text-left'>
-          <Link href={'/shop?page=haircare'} className='mr-20 w-full'>Haircare</Link>
-          <Link href={'/shop?page=pure-essential-oils'} className='mr-20 w-full'>Pure Essential Oils</Link>
-          <Link href={'/shop?page=sponges'} className='w-full'>Toners</Link>
+          <Link href={'/shop/category?page=haircare'} className='mr-20 w-full'>Haircare</Link>
+          <Link href={'/shop/category?page=pure-essential-oils'} className='mr-20 w-full'>Pure Essential Oils</Link>
+          <Link href={'/shop/category?page=sponges'} className='w-full'>Toners</Link>
         </div>
       ),
     },
     {
       key: '6',
       label: (
-        <Link href={'/shop?page=kits'} className='p-2'>Kits</Link>
+        <Link href={'/shop/category?page=kits'} className='p-2'>Kits</Link>
       ),
     },
   ]
