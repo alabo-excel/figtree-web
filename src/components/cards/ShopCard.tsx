@@ -1,11 +1,11 @@
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 const ShopCard = ({ item }: { item: any }) => {
-  const [num, setNum] = useState(0);
 
   return (
     <div className=''>
-      <img onMouseEnter={() => setNum(1)} onMouseLeave={() => setNum(0)} className='w-full' src={'/assets/' + item.img[num]} alt="" />
+      <Link href={`/shop/single?page=${item._id}`}><img className='w-full' src={item.image[0]} alt="" /></Link>
       <div className='flex justify-between py-2 '>
         <div className=''>
           <p>{item.title}</p>

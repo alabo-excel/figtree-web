@@ -80,7 +80,7 @@ export default function Home() {
             <HeadingText text="Shop Most Loved" index="2" />
             <div className="lg:flex justify-between">
               {products.map((item, index) => (
-                <ProductCard item={item} />
+                <ProductCard key={index} item={item} />
               ))}
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function Home() {
             <HeadingText text="Shop Best Sellers" index="2" />
             <div className="lg:flex justify-between">
               {products.map((item, index) => (
-                <ProductCard item={item} />
+                <ProductCard key={index} item={item} />
               ))}
             </div>
           </div>

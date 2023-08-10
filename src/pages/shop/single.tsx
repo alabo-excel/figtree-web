@@ -1,58 +1,50 @@
 import ShopBanner from '@/components/ShopBanner';
 import ShopCard from '@/components/cards/ShopCard';
 import MainLayout from '@/layout/MainLayout';
-import React, { useState } from 'react';
+import { ProductType } from '@/types/Applicant.types';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 
 const SingleProduct = () => {
   const [count, setCount] = useState<number | any>(1)
   const [desc, setDesc] = useState<boolean>(true)
+  const [product, setProduct] = useState<ProductType>()
+  const [products, setProducts] = useState<ProductType[]>([])
+  const { query } = useRouter()
 
-  const products = [
-    {
-      title: "Cream",
-      price: "₦ 2,000",
-      img: [
-        "ing1.png",
-        "ing2.png",
-      ]
-    },
-    {
-      title: "Cream",
-      price: "₦ 2,000",
-      img: [
-        "ing1.png",
-        "ing2.png",
-      ]
-    },
-    {
-      title: "Cream",
-      price: "₦ 2,000",
-      img: [
-        "ing1.png",
-        "ing2.png",
-      ]
-    },
-    {
-      title: "Cream",
-      price: "₦ 2,000",
-      img: [
-        "ing1.png",
-        "ing2.png",
-      ]
-    },
-  ]
+  const getProducts = async () => {
+    try {
+      const { data } = await axios.get(`product/${query.page}`)
+      console.log(data[0])
+      setProduct(data[0])
+    } catch (err) {
+      console.log(err)
+    }
+    // try {
+    //   const { data } = await axios.get(`product/suggest`)
+    //   console.log(data)
+    //   setProducts(data)
+    // } catch (err) {
+    //   console.log(err)
+    // }
+  }
+
+  useEffect(() => {
+    getProducts()
+  }, [])
+
   return (
     <MainLayout>
       <div>
         <ShopBanner text="Product Details" />
         <div className='flex p-10'>
           <div className='w-[40%]'>
-            <img className='w-full' src="/assets/ing1.png" alt="" />
+            <img className='w-full' src={product?.image[0]} alt="" />
           </div>
           <div className='w-[40%] ml-20 my-auto p-2'>
-            <h2 className='text-4xl font-bold'>FigTree Karkar oil
-              (170g)</h2>
-            <p className='my-2'>N4 500.00</p>
+            <h2 className='text-4xl font-bold'>{product?.title}</h2>
+            <p className='my-2'>N {product?.price}</p>
             <p className='text-xs'>Shipping calculated at checkout</p>
             <div className='my-6'>
               <p className='text-xs'>Quantity</p>
@@ -75,9 +67,9 @@ const SingleProduct = () => {
           {
             desc ? <div>
               <p className='text-2xl my-4'>What is this?</p>
-              <p>Figtree Pure Shea Butter</p>
+              <p>{product?.title}</p>
               <p className='text-2xl my-4'>Product Details</p>
-              <p>FIGTREE KARKAR OIL is a wonder oil for hair and skin. I t is made with sesame seed oil and other oils. This rich, nutriously rich sudanese oil can thicken the hair, reduce dandruff and improve hair growth. It can be used as a moisturizer for the skin. It works even better with Figtree Chebe Powder </p>
+              <p>{product?.description}</p>
             </div> : <div></div>
           }
           <div>

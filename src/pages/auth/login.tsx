@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { setCookie } from 'cookies-next';
+import router from 'next/router';
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
@@ -15,6 +16,7 @@ const Login = () => {
       const { data } = await axios.post('login', { email, password })
       console.log(data)
       setCookie('token', data.token);
+      router.push('/shop')
       setLoading(false)
     } catch (err) {
       console.log(err)

@@ -1,19 +1,28 @@
 import ShopBanner from '@/components/ShopBanner';
 import ShopCard from '@/components/cards/ShopCard';
 import MainLayout from '@/layout/MainLayout';
-import React from 'react';
+import { ProductType } from '@/types/Applicant.types';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import React, { useState, useEffect } from 'react';
 
 const Shop = () => {
-  const products = [
-    {
-      title: "Cream",
-      price: "₦ 2,000",
-      img: [
-        "ing1.png",
-        "ing2.png",
-      ]
+  const [products, setProducts] = useState<ProductType[]>([])
+  const { query } = useRouter()
+
+  const getProducts = async () => {
+    try {
+      const { data } = await axios.get('product')
+      console.log(data)
+      setProducts(data)
+    } catch (err) {
+      console.log(err)
     }
-  ]
+  }
+
+  useEffect(() => {
+    getProducts()
+  }, [])
 
   return (
     <MainLayout>
@@ -22,7 +31,7 @@ const Shop = () => {
         <div className='lg:mx-20'>
           <div className="lg:flex flex-wrap justify-between">
             {products.map((item, index) => (
-              <ShopCard item={item} />
+              <ShopCard key={index} item={item} />
             ))}
           </div>
         </div>
