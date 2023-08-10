@@ -22,7 +22,7 @@ const SingleProduct = () => {
       console.log(err)
     }
     try {
-      const { data } = await axios.get(`product/suggest`)
+      const { data } = await axios.get(`suggest`)
       console.log(data)
       setProducts(data)
     } catch (err) {

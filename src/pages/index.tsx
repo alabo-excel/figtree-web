@@ -4,9 +4,41 @@ import CategoryCard from "@/components/cards/CategoryCard";
 import ProductCard from "@/components/cards/ProductCard";
 import ReviewCard from "@/components/cards/ReviewCard";
 import MainLayout from "@/layout/MainLayout";
+import { ProductType } from "@/types/Applicant.types";
+import axios from "axios";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [suggestions, setSuggestions] = useState<ProductType[]>([])
+  const [mostSold, setMostSold] = useState<ProductType[]>([])
+
+  const getSuggestions = async () => {
+    try {
+      const { data } = await axios.get(`/suggest`)
+      console.log(data)
+      setSuggestions(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const getMostSold = async () => {
+    try {
+      const { data } = await axios.get(`/most-sold`)
+      console.log(data)
+      setMostSold(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getSuggestions()
+    getMostSold()
+  }, [])
+
+
   const category = [
     {
       img: "Group-115.png",
@@ -30,40 +62,6 @@ export default function Home() {
     },
   ]
 
-  const products = [
-    {
-      title: "Cream",
-      price: "₦ 2,000",
-      img: [
-        "ing1.png",
-        "ing2.png",
-      ]
-    },
-    {
-      title: "Cream",
-      price: "₦ 2,000",
-      img: [
-        "ing1.png",
-        "ing2.png",
-      ]
-    },
-    {
-      title: "Cream",
-      price: "₦ 2,000",
-      img: [
-        "ing1.png",
-        "ing2.png",
-      ]
-    },
-    {
-      title: "Cream",
-      price: "₦ 2,000",
-      img: [
-        "ing1.png",
-        "ing2.png",
-      ]
-    },
-  ]
 
   return (
     <MainLayout>
@@ -79,7 +77,7 @@ export default function Home() {
           <div className="mt-20">
             <HeadingText text="Shop Most Loved" index="2" />
             <div className="lg:flex justify-between">
-              {products.map((item, index) => (
+              {suggestions.map((item, index) => (
                 <ProductCard key={index} item={item} />
               ))}
             </div>
@@ -87,7 +85,7 @@ export default function Home() {
           <div className="mt-20">
             <HeadingText text="Shop Best Sellers" index="2" />
             <div className="lg:flex justify-between">
-              {products.map((item, index) => (
+              {mostSold.map((item, index) => (
                 <ProductCard key={index} item={item} />
               ))}
             </div>
