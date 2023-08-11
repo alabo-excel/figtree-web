@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { selectCart } from "@/store/slices/cartSlice.js"
 import { ProductType } from '@/types/Applicant.types';
 import axios from 'axios';
+import { usePaystackPayment } from 'react-paystack';
+import { PaystackProps } from "react-paystack/dist/types"
 
 const Checkout = () => {
   const [step, setStep] = useState(1)
@@ -22,7 +24,12 @@ const Checkout = () => {
   const [streetName, setStreetName] = useState("")
   const [landmark, setLandmark] = useState("")
   const [zip, setZip] = useState("")
-  const [location, setLocation] = useState<Number>()
+
+  const [location, setLocation] = useState(0)
+  const [shippingCost, setShippingCost] = useState(0)
+
+
+
 
   const shipping = [
     {
@@ -108,16 +115,66 @@ const Checkout = () => {
     }
   }, [country])
 
+  const getShipping = () => {
+    if (state === "Lagos") {
+      setShippingCost(shipping[location].amount)
+    } else if (country === "Nigeria") {
+      let totalQty = 0;
+      for (let i = 0; i < cart.length; i++) {
+        totalQty += cart[i].quantity;
+      }
+      totalQty > 2 && setLocation(1)
+      setShippingCost(nigeriaShipping[location].amount)
+    } else {
+      let totalQty = 0;
+      for (let i = 0; i < cart.length; i++) {
+        totalQty += cart[i].quantity;
+      }
+      totalQty > 2 && setLocation(1)
+      setShippingCost(outsideShipping[location].amount)
+    }
+  }
+
+  useEffect(() => {
+    getShipping()
+  }, [step])
+
   const getTotal = () => {
-    return cart.map((item: { price: number; count: number; }) => item.price * item.count)
+    return parseInt(cart.map((item: { price: number; count: number; }) => item.price * item.count))
   }
 
   const nextStep = () => {
-    // if (state === "" || country === "" || city === "" || houseNo === "" || streetName === "" || phone === "" || landmark === "" || zip === "" || name === "") {
-    //   return
-    // }
+    if (state === "" || country === "" || city === "" || houseNo === "" || streetName === "" || phone === "" || landmark === "" || zip === "" || name === "") {
+      return
+    }
     setStep(2)
   }
+
+  const config: PaystackProps = {
+    reference: (new Date()).getTime().toString(),
+    email: "user@example.com",
+    currency: "NGN",
+    amount: getTotal() + shippingCost * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+    publicKey: 'pk_test_dsdfghuytfd2345678gvxxxxxxxxxx',
+  };
+
+  const onSuccess = async () => {
+    console.log("done");
+    try {
+      const { data } = await axios.post("order/delivery", {
+        name, phone, country, houseNumber: houseNo, streetName, landmark, city, state, zip, orderPrice: getTotal() + shippingCost
+      })
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
+  };
+
+  const onClose = () => {
+    console.log('closed')
+  }
+
+  const initializePayment = usePaystackPayment(config);
 
   return (
     <MainLayout>
@@ -143,11 +200,11 @@ const Checkout = () => {
             </div>
             <div className='flex justify-between my-2'>
               <p>Estimated shipping  </p>
-              <p>N</p>
+              <p>N {shippingCost}</p>
             </div>
             <div className='flex text-xl font-bold my-2 justify-between'>
               <p>Total </p>
-              <p>N {getTotal()}</p>
+              <p>N {getTotal() + shippingCost}</p>
             </div>
           </div>
           <div className='lg:w-[60%] sm:mt-10'>
@@ -282,7 +339,7 @@ const Checkout = () => {
                   <p className='text-sm my-3'> <strong>Note:</strong> Receiver is responsible for any additional charges like custom duties </p>
 
                 </div>}
-                <button className='bg-warning p-3 w-full rounded-md my-4'>Checkout</button>
+                <button onClick={() => initializePayment(onSuccess, onClose)} className='bg-warning p-3 w-full rounded-md my-4'>Checkout</button>
               </div>}
             </div> : <Pickup />}
           </div>
