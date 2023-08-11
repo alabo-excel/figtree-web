@@ -24,10 +24,17 @@ const Shop = () => {
     getProducts()
   }, [query.page])
 
+  function replaceHyphensWithSpaces(inputString: string | string[] | undefined) {
+    if (typeof inputString !== "string") {
+      return
+    }
+    return inputString.replace(/-/g, " ");
+  }
+
   return (
     <MainLayout>
       <div>
-        <ShopBanner text={query.page} />
+        <ShopBanner text={replaceHyphensWithSpaces(query.page)} />
         <div className='lg:mx-20'>
           <div className="lg:flex flex-wrap justify-between">
             {products.map((item, index) => (

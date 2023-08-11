@@ -30,7 +30,7 @@ const Shop = () => {
       label: (
         <div className='flex justify-between p-2 text-left'>
           <Link href={'/shop/category?page=face-cleaners'} className='mr-20 w-full'>Face Cleaners</Link>
-          <Link href={'/shop/category?page=pure-utters'} className='mr-20 w-full'>Pure Butters</Link>
+          <Link href={'/shop/category?page=pure-butters'} className='mr-20 w-full'>Pure Butters</Link>
           <Link href={'/shop/category?page=soaps'} className='w-full'>Soaps</Link>
         </div>
       ),

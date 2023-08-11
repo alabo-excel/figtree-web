@@ -16,6 +16,7 @@ const Cart = () => {
   const cart = useSelector(selectCart)
   const dispatch = useDispatch();
   const author = getCookie('user')
+  const [save, setSave] = useState(true)
   const [suggestion, setSuggestion] = useState<ProductType[]>([])
 
   const getSuggestion = async () => {
@@ -28,6 +29,10 @@ const Cart = () => {
     }
   }
 
+  const getTotal = () => {
+    return cart.map((item: { price: number; count: number; }) => item.price * item.count)
+  }
+  
   useEffect(() => {
     getSuggestion()
   }, [
@@ -45,28 +50,30 @@ const Cart = () => {
             }
             <div className='border-t border-t-gray my-6'></div>
             <div className='float-right'>
-              <p className='font-bold text-xl'>Subtotal (1 item): N4500</p>
+              <p className='font-bold text-xl'>Subtotal ({cart.length} item): N{getTotal()}</p>
               <p className='my-4'>Looking for more? <Link href={'/shop'}> <span className='text-orange'> Continue Shopping</span> </Link></p>
             </div>
 
             <div className='mt-32'>
               <h1 className='text-4xl font-bold'>Your items</h1>
               <div className='flex text-xl my-5'>
-                <p className='cursor-pointer'>Save for later</p>
-                <p className='ml-8 cursor-pointer'>Buy it again</p>
+                <p onClick={() => setSave(true)} className={`cursor-pointer ${save ? 'border-b-2 border-orange' : ''}`}>Save for later</p>
+                <p onClick={() => setSave(false)} className={`ml-10 cursor-pointer ${save ? '' : 'border-b-2 border-orange'}`}>Buy it again</p>
               </div>
               <div className='border-t border-t-gray my-6'></div>
-              <div className='flex justify-between flex-wrap'>
-                {suggestion.slice(0, 8).map((item, index) =>
-                  <ProductCard item={item} key={index} />
-                )}
-              </div>
+              {
+                save ? <div className='flex justify-between flex-wrap'>
+                  {suggestion.slice(0, 8).map((item, index) =>
+                    <ProductCard item={item} key={index} />
+                  )}
+                </div> : <div></div>
+              }
             </div>
           </div>
           <div className='w-[30%]'>
             <div className='text-center p-10 shadow-lg rounded-md'>
-              <p className='font-bold text-xl'>Subtotal (1 item): N4500</p>
-              <button className='p-3 rounded-md w-full bg-warning my-4'>Proceed to checkout</button>
+              <p className='font-bold text-xl'>Subtotal ({cart.length} item): N{getTotal()}</p>
+              <Link href={'/shop/checkout'}><button className='p-3 rounded-md w-full bg-warning my-4'>Proceed to checkout</button></Link>
             </div>
             <div className='shadow-lg rounded-md p-6 mt-6'>
               <p className='text-center font-bold'>Customers who bought items in your recent history also bought </p>

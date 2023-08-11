@@ -39,6 +39,7 @@ ol li {
 
 input:focus,
 textarea:focus,
+select,
 button:focus {
   outline: none;
 }
