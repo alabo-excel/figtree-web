@@ -43,7 +43,7 @@ const Cart = () => {
     <MainLayout>
       <div>
         <ShopBanner text="Shopping Cart" />
-        <div className='flex p-8'>
+        <div className='lg:flex lg:p-8 p-4'>
           <div className='w-full'>
             {
               cart.map((item: ProductType, index: React.Key | null | undefined) => <CartCard pos={index} key={index} item={item} />)
@@ -70,7 +70,7 @@ const Cart = () => {
               }
             </div>
           </div>
-          <div className='w-[30%]'>
+          <div className='lg:w-[30%]'>
             <div className='text-center p-10 shadow-lg rounded-md'>
               <p className='font-bold text-xl'>Subtotal ({cart.length} item): N{getTotal()}</p>
               <Link href={'/shop/checkout'}><button className='p-3 rounded-md w-full bg-warning my-4'>Proceed to checkout</button></Link>

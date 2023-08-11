@@ -49,3 +49,10 @@ ul li {
   list-style-position: inside;
 
 }
+
+.checkbox:checked {
+  border: none;
+}
+.checkbox:checked + .check-icon {
+  display: flex;
+}

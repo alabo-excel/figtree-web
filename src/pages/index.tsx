@@ -106,7 +106,7 @@ export default function Home() {
           <div>
             <h2 className="text-3xl text-center">We Love Reviews.....</h2>
             <p className="float-right">
-              <Link href={'/'}>See all</Link>
+              <Link href={'/reviews'}>See all</Link>
             </p>
           </div>
           <div className="lg:flex justify-between my-8">
@@ -115,7 +115,7 @@ export default function Home() {
             <ReviewCard />
           </div>
         </div>
-        <div className="my-20 relative">
+        <div className="lg:my-20 my-10 relative">
           <img src="/assets/cta.png" className="w-full lg:h-[60vh] h-[40vh]" alt="" />
           <div className="w-full absolute top-0 left-0 right-0 bg-[#000000] opacity-50 lg:h-[60vh] h-[40vh]"></div>
           <div className="absolute lg:top-40 top-6 left-0 right-0 text-center">
