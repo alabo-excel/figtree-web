@@ -16,7 +16,7 @@ export default function Home() {
   const getSuggestions = async () => {
     try {
       const { data } = await axios.get(`/suggest`)
-      console.log(data)
+      // console.log(data)
       setSuggestions(data)
     } catch (err) {
       console.log(err)
@@ -26,12 +26,14 @@ export default function Home() {
   const getMostSold = async () => {
     try {
       const { data } = await axios.get(`/most-sold`)
-      console.log(data)
+      // console.log(data)
       setMostSold(data)
     } catch (err) {
       console.log(err)
     }
   }
+
+
 
   useEffect(() => {
     getSuggestions()

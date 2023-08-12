@@ -1,14 +1,33 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AboutUs from './dropdowns/AboutUs';
 import Resources from './dropdowns/Resources';
 import Shop from './dropdowns/Shop';
 import { useSelector } from 'react-redux';
 import { selectCart } from "@/store/slices/cartSlice.js"
+import axios from 'axios';
 
 const HeaderNav = () => {
   const cart = useSelector(selectCart)
   const [menu, setMenu] = useState(false)
+  const [country, setCountry] = useState<any>()
+
+  const getUserCountry = async () => {
+    try {
+      const { data } = await axios.get("https://figtree.onrender.com/")
+      // console.log(data)
+      await axios.get(`https://restcountries.com/v3.1/name/${data.addressCountry}`)
+        .then((response) => {
+          console.log(response.data[0])
+          setCountry(response.data[0])
+        })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  useEffect(() => {
+    getUserCountry()
+  }, [])
 
   return (
     <div>
@@ -53,16 +72,17 @@ const HeaderNav = () => {
         </div>
         <div className='flex'>
           <Link href={'/auth/login'}>
-            <img className='w-5 h-5 mx-2' src="/assets/icons/line-md_account.png" alt="" />
+            <img className='w-5 h-5' src="/assets/icons/line-md_account.png" alt="" />
           </Link>
-          <div className='relative mr-4'>
+          <div className='relative'>
             <Link href={'/shop/cart'}>
               <img className='w-5 h-5 mx-4' src="/assets/icons/cart.png" alt="" />
             </Link>
-
             {cart.length > 0 && <div className='absolute top-0 text-xs right-0 text-white h-5 text-center w-5 bg-red-500 rounded-full'>{cart.length}</div>}
           </div>
-
+          <div className="mr-4">
+            <img src={country?.flags.png} className="mx-4 w-5 h-4 my-auto" />
+          </div>
         </div>
       </div>
       {
