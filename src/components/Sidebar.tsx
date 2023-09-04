@@ -13,7 +13,7 @@ const Sidebar = () => {
           <img src="/assets/icons/bxs_dashboard.png" alt="" /> <p className='my-auto text-sm ml-6'>Dashboard </p>
         </div>
       </Link>
-      <Link href={'/admin/dashboard'}>
+      <Link href={'/admin/products'}>
         <div className='my-3 p-4 flex text-white mx-auto'>
           <img src="/assets/icons/product.png" alt="" /> <p className='my-auto text-sm ml-6'>Products </p>
         </div>

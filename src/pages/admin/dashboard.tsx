@@ -1,7 +1,7 @@
 import AdminLayout from '@/layout/AdminLayout';
 import Link from 'next/link';
 import React from 'react';
-import { Space, Table, Tag } from 'antd';
+import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 
 const Dashboard = () => {

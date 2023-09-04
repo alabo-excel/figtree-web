@@ -10,11 +10,12 @@
 @tailwind utilities;
 
 
-/* body {
-  font-family: 'Playfair Display', serif;
-} */
+body {
+  font-family: 'Axiforma' !important;
+}
 
-p {
+p,
+label {
   font-family: 'Axiforma' !important;
 }
 
@@ -53,6 +54,7 @@ ul li {
 .checkbox:checked {
   border: none;
 }
-.checkbox:checked + .check-icon {
+
+.checkbox:checked+.check-icon {
   display: flex;
 }
