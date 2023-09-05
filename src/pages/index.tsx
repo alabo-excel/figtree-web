@@ -4,7 +4,7 @@ import CategoryCard from "@/components/cards/CategoryCard";
 import ProductCard from "@/components/cards/ProductCard";
 import ReviewCard from "@/components/cards/ReviewCard";
 import MainLayout from "@/layout/MainLayout";
-import { ProductType } from "@/types/Applicant.types";
+import { ProductType, Review } from "@/types/Applicant.types";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [suggestions, setSuggestions] = useState<ProductType[]>([])
   const [mostSold, setMostSold] = useState<ProductType[]>([])
+  const [reviews, setReviews] = useState<Review[]>([])
 
   const getSuggestions = async () => {
     try {
@@ -33,11 +34,20 @@ export default function Home() {
     }
   }
 
-
+  const getReviews = async () => {
+    try {
+      const { data } = await axios.get('reviews')
+      // console.log(data)
+      setReviews(data)
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   useEffect(() => {
     getSuggestions()
     getMostSold()
+    getReviews()
   }, [])
 
 
@@ -112,9 +122,7 @@ export default function Home() {
             </p>
           </div>
           <div className="lg:flex justify-between my-8">
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
+            {reviews.slice(0, 3).map((review, index) => <ReviewCard key={index} review={review} />)}
           </div>
         </div>
         <div className="lg:my-20 my-10 relative">

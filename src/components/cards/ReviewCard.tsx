@@ -14,7 +14,8 @@ const ReviewCard = ({ review }: { review: Review }) => {
         <p className='text-[#F26122] capitalize text-lg text-center my-3'>{review.title}</p>
         <p>{review.description.substring(0, 50)}</p>
         {
-          route.includes('admin') ? <Link href={`/admin/reviews/single?page=${review._id}`}><p className='text-center underline'>Read more</p></Link> : <Link href={'/reviews'}><p className='text-center underline'>Read more</p></Link>
+          route.includes('admin') ? <Link href={`/admin/reviews/single?page=${review._id}`}><p className='text-center underline'>Read more</p></Link> :
+            <Link href={`/reviews/single?page=${review._id}`}><p className='text-center underline'>Read more</p></Link>
         }
       </div>
     </div>
