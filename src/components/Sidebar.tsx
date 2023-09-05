@@ -18,7 +18,7 @@ const Sidebar = () => {
           <img src="/assets/icons/product.png" alt="" /> <p className='my-auto text-sm ml-6'>Products </p>
         </div>
       </Link>
-      <Link href={'/admin/dashboard'}>
+      <Link href={'/admin/customers'}>
         <div className='my-3 p-4 flex text-white mx-auto'>
           <img src="/assets/icons/costumer.png" alt="" /> <p className='my-auto text-sm ml-6'>Customers </p>
         </div>
@@ -28,7 +28,7 @@ const Sidebar = () => {
           <img src="/assets/icons/carbon_report.png" alt="" /> <p className='my-auto text-sm ml-6'>Orders </p>
         </div>
       </Link>
-      <Link href={'/admin/dashboard'}>
+      <Link href={'/admin/reviews'}>
         <div className='my-3 p-4 flex text-white mx-auto'>
           <img src="/assets/icons/positive-review.png" alt="" /> <p className='my-auto text-sm ml-6'>Reviews </p>
         </div>

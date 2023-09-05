@@ -60,7 +60,7 @@ const Products = () => {
   return (
     <AdminLayout>
       <div>
-        <p className='font-bold text-3xl'>Products</p>
+        <p className='font-bold text-2xl'>Products</p>
         <div className='m-4 border rounded-t-xl'>
           <div className='flex justify-between p-4'>
             <div className=''>
@@ -86,7 +86,7 @@ const Products = () => {
             </div>
           </div> */}
         </div>
-        <div className='m-4'>
+        <div className='my-4'>
           <input type="text" className='p-3 rounded-md mb-4 border w-1/2' placeholder='Search Product' />
           <Table columns={columns} dataSource={data} />
 
