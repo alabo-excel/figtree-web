@@ -9,7 +9,7 @@ export interface ProductType {
   category: string;
   quantity: number;
   weight: number;
-  date: Date;
+  date: string;
 }
 
 export type Saved = {

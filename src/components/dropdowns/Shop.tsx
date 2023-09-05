@@ -51,7 +51,7 @@ const Shop = () => {
         <div className='flex justify-between p-2 text-left'>
           <Link href={'/shop/category?page=haircare'} className='lg:mr-20  mr-6 w-full'>Haircare</Link>
           <Link href={'/shop/category?page=pure-essential-oils'} className='lg:mr-20 mr-6 w-full'>Pure Essential Oils</Link>
-          <Link href={'/shop/category?page=sponges'} className='w-full'>Toners</Link>
+          <Link href={'/shop/category?page=toners'} className='w-full'>Toners</Link>
         </div>
       ),
     },

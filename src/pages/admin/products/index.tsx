@@ -1,24 +1,60 @@
 import AdminLayout from '@/layout/AdminLayout';
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
+import axios from 'axios';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { message } from 'antd';
 
 const Products = () => {
   interface DataType {
-    product: string;
+    title: string;
     category: string;
     date: string;
     price: string;
     delete: any;
     view: any;
+    _id: string;
+  }
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const [data, setData] = useState<DataType[]>([])
+  const getProducts = async () => {
+    try {
+      const { data } = await axios.get('product')
+      // console.log(data)
+      setData(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getProducts()
+  }, [])
+
+  const deleteProduct = async (id: string) => {
+    try {
+      await axios.delete(`/product/remove/${id}`)
+      getProducts()
+      messageApi.open({
+        type: 'success',
+        content: 'Product deleted successfully!',
+      });
+    } catch (err: any) {
+      console.log(err)
+      messageApi.open({
+        type: 'error',
+        content: err.response.data.message,
+      });
+    }
   }
 
   const columns: ColumnsType<DataType> = [
     {
       title: 'Product ',
-      dataIndex: 'product',
-      key: 'product',
+      dataIndex: 'title',
+      key: 'title',
     },
     {
       title: 'Category',
@@ -29,6 +65,8 @@ const Products = () => {
       title: 'Date',
       dataIndex: 'date',
       key: 'date',
+      render: (text) => text.substring(0, 10),
+
     },
     {
       title: 'Amount per product',
@@ -39,27 +77,20 @@ const Products = () => {
       title: '',
       dataIndex: 'delete',
       key: 'delete',
+      render: (_, record) => (<img onClick={() => deleteProduct(record._id)} src='/assets/icons/fluent_delete.png' />),
     },
     {
       title: '',
       dataIndex: 'view',
       key: 'view',
+      render: (_, record) => <Link href={`/admin/products/single?page=${record._id}`}><img src='/assets/icons/view.png' /></Link>,
     },
   ];
 
-  const data: DataType[] = [
-    {
-      product: 'John Brown',
-      category: '32',
-      date: 'New York No. 1 Lake Park',
-      price: "Processing",
-      delete: (<img src='/assets/icons/fluent_delete.png' />),
-      view: (<img src='/assets/icons/view.png' />)
-    },
-  ];
   return (
     <AdminLayout>
       <div>
+        {contextHolder}
         <p className='font-bold text-2xl'>Products</p>
         <div className='m-4 border rounded-t-xl'>
           <div className='flex justify-between p-4'>
@@ -89,7 +120,6 @@ const Products = () => {
         <div className='my-4'>
           <input type="text" className='p-3 rounded-md mb-4 border w-1/2' placeholder='Search Product' />
           <Table columns={columns} dataSource={data} />
-
         </div>
       </div>
     </AdminLayout>

@@ -4,11 +4,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { setCookie } from 'cookies-next';
 import router from 'next/router';
+import { message } from 'antd';
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState<String>('')
   const [password, setPassword] = useState<String>('')
+  const [messageApi, contextHolder] = message.useMessage();
 
   const login = async () => {
     try {
@@ -17,17 +19,26 @@ const Login = () => {
       console.log(data)
       setCookie('token', data.token);
       setCookie('user', data.id)
-      router.push('/shop')
+      if (data.role === 'admin') {
+        router.push('/admin/dashboard')
+      } else {
+        router.push('/shop')
+      }
       setLoading(false)
-    } catch (err) {
+    } catch (err: any) {
       console.log(err)
       setLoading(false)
+      messageApi.open({
+        type: 'error',
+        content: err.response.data.message,
+      });
     }
   }
 
   return (
     <MainLayout>
       <div className='lg:w-[30%] w-[90%] mx-auto my-10'>
+        {contextHolder}
         <div className='text-center'>
           <h1 className='text-3xl'>Log In</h1>
           <p className='my-2 text-sm'>Kindly enter your log in details</p>
