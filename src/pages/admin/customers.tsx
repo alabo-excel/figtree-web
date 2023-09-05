@@ -1,22 +1,21 @@
 import AdminLayout from '@/layout/AdminLayout';
+import { UserType } from '@/types/Applicant.types';
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import React from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 const Customers = () => {
-  interface DataType {
-    name: string;
-    email: string;
-    phone: string;
-    date: string;
-    country: string;
-  }
 
-  const columns: ColumnsType<DataType> = [
+  const [data, setData] = useState<UserType[]>()
+
+  const columns: ColumnsType<UserType> = [
     {
       title: 'Customer Name ',
       dataIndex: 'name',
       key: 'name',
+      render: (_, record) => record.fName + ' ' + record.lName,
+
     },
     {
       title: 'Email',
@@ -32,6 +31,7 @@ const Customers = () => {
       title: 'Joined At',
       dataIndex: 'date',
       key: 'date',
+      render: (text) => text.substring(0, 10),
     },
     {
       title: 'Country',
@@ -40,15 +40,28 @@ const Customers = () => {
     },
   ];
 
-  const data: DataType[] = [
-    {
-      name: 'John Brown',
-      email: '32',
-      phone: 'New York No. 1 Lake Park',
-      date: "Processing",
-      country: "Nigeria",
-    },
-  ];
+  // const data: DataType[] = [
+  //   {
+  //     name: 'John Brown',
+  //     email: '32',
+  //     phone: 'New York No. 1 Lake Park',
+  //     date: "Processing",
+  //     country: "Nigeria",
+  //   },
+  // ];
+  useEffect(() => {
+    getUsers()
+  }, [])
+
+  const getUsers = async () => {
+    try {
+      const { data } = await axios.get('users')
+      console.log(data)
+      setData(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <AdminLayout>

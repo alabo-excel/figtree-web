@@ -1,9 +1,25 @@
 import ReviewCard from '@/components/cards/ReviewCard';
 import AdminLayout from '@/layout/AdminLayout';
+import axios from 'axios';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Reviews = () => {
+  const [reviews, setReviews] = useState([])
+
+  useEffect(() => {
+    getReviews()
+  }, [])
+
+  const getReviews = async () => {
+    try {
+      const { data } = await axios.get('reviews')
+      console.log(data)
+      setReviews(data)
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <AdminLayout>
       <div>
@@ -17,9 +33,7 @@ const Reviews = () => {
           <p>Reviews</p>
 
           <div className='flex mt-3 flex-wrap justify-between'>
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
+            {reviews.map((review, index) => <ReviewCard key={index} review={review} />)}
           </div>
         </div>
       </div>

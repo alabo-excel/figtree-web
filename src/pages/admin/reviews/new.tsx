@@ -1,14 +1,20 @@
 import AdminLayout from '@/layout/AdminLayout';
-import React, { useState, useRef } from 'react';
+import { message } from 'antd';
+import axios from 'axios';
+import Link from 'next/link';
+import router, { useRouter } from 'next/router';
+import React, { useState, useRef, useEffect } from 'react';
 
 const New = () => {
   const beoferRef = useRef<HTMLInputElement>(null)
   const afterRef = useRef<HTMLInputElement>(null)
-
+  const [messageApi, contextHolder] = message.useMessage();
   const [before, setBefore] = useState("")
   const [after, setAfter] = useState("")
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
+  const [loading, setLoading] = useState(false)
+  const { query } = useRouter()
 
   const handleBefore = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
@@ -43,10 +49,79 @@ const New = () => {
     }
   }
 
+  const addReview = async () => {
+    try {
+      setLoading(true)
+      const { data } = await axios.post('/reviews', {
+        title,
+        description,
+        image: [before, after]
+      })
+      messageApi.open({
+        type: 'success',
+        content: 'Review created successfully!',
+      });
+      console.log(data)
+      setLoading(false)
+      router.push(`/admin/reviews`)
+    } catch (err: any) {
+      setLoading(false)
+      messageApi.open({
+        type: 'error',
+        content: err.response.data.message,
+      });
+    }
+  }
+  const getReview = async () => {
+    try {
+      const { data } = await axios.get(`reviews/${query.page}`)
+      // console.log(data[0])
+      // setReview(data[0])
+
+      setTitle(data[0].title)
+      setDescription(data[0].description)
+      setBefore(data[0].image[0])
+      setAfter(data[0].image[1])
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  useEffect(() => {
+    if (query.page !== undefined) {
+      getReview()
+    }
+  }, [])
+  const editReview = async () => {
+    try {
+      setLoading(true)
+      const { data } = await axios.put(`/reviews/${query.page}`, {
+        title,
+        description,
+        image: [before, after]
+      })
+      messageApi.open({
+        type: 'success',
+        content: 'Review edited successfully!',
+      });
+      console.log(data)
+      setLoading(false)
+      router.push(`/admin/reviews`)
+    } catch (err: any) {
+      setLoading(false)
+      messageApi.open({
+        type: 'error',
+        content: err.response.data.message,
+      });
+    }
+  }
+
   return (
     <AdminLayout>
       <div>
-        <p className='text-2xl font-bold'>Ratings & Review</p>
+        {contextHolder}
+        {query.page !== undefined ? <p className='text-2xl font-bold'>Edit Review</p> : <p className='text-2xl font-bold'>New Review</p>
+        }
         <div className='border p-6 mt-4 rounded-xl'>
           <div>
             <p className='tet-xl'>Review Images</p>
@@ -76,11 +151,17 @@ const New = () => {
           </div>
           <div className='my-4'>
             <label htmlFor="" className='my-1'>Review Title</label>
-            <input type="text" placeholder='Enter Title' className='p-3 rounded-md bg-[#EFEFF7] w-full' />
+            <input value={title} onChange={e => setTitle(e.target.value)} type="text" placeholder='Enter Title' className='p-3 rounded-md bg-[#EFEFF7] w-full' />
           </div>
           <div className='my-4'>
             <label htmlFor="" className='my-1'>Review Description</label>
-            <textarea placeholder='Enter Description' className='p-3 rounded-md bg-[#EFEFF7] w-full h-40' ></textarea>
+            <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder='Enter Description' className='p-3 rounded-md bg-[#EFEFF7] w-full h-40' ></textarea>
+          </div>
+
+          <div className='float-right'>
+            <Link href={'/admin/products'}><button className='p-3 font-bold px-6 rounded-md'>Cancel</button></Link>
+            {query.page !== undefined ? <button onClick={() => editReview()} className='p-3 font-bold bg-warning rounded-md px-6'>{loading ? 'loading...' : 'Edit'}</button> : <button onClick={() => addReview()} className='p-3 font-bold bg-warning rounded-md px-6'>{loading ? 'loading...' : 'Publish'}</button>
+            }
           </div>
         </div>
       </div>

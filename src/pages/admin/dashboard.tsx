@@ -1,8 +1,10 @@
 import AdminLayout from '@/layout/AdminLayout';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import axios from 'axios';
+import { UserType } from '@/types/Applicant.types';
 
 const Dashboard = () => {
   interface DataType {
@@ -11,6 +13,21 @@ const Dashboard = () => {
     data: string;
     amount: string;
     order: string;
+  }
+  const [users, setUsers] = useState<UserType[]>([])
+
+  useEffect(() => {
+    getUsers()
+  }, [])
+
+  const getUsers = async () => {
+    try {
+      const { data } = await axios.get('users')
+      console.log(data)
+      setUsers(data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   const columns: ColumnsType<DataType> = [
@@ -64,7 +81,7 @@ const Dashboard = () => {
           <div className='rounded-3xl p-6 w-[32%] bg-[#00AF4D1A]'>
             <img src="/assets/icons/customers.png" alt="" />
             <p className='my-3'>Total Customers</p>
-            <p className='text-3xl font-black'>100</p>
+            <p className='text-3xl font-black'>{users?.length}</p>
           </div>
           <div className='rounded-3xl p-6 w-[32%] bg-[#F261221A]'>
             <img src="/assets/icons/orders.png" alt="" />
@@ -80,14 +97,14 @@ const Dashboard = () => {
           <div className='w-[32%]'>
             <p className='font-bold text-lg'>Recent Customers</p>
             <div className='bg-[#F5F6FF] rounded-3xl'>
-              <div className='p-3 flex border-b border-[#0000001A]'>
-                <img src="/assets/icons/user.png" alt="" />
+              {users.map(user => <div className='p-3 flex border-b border-[#0000001A]'>
+                <img src="/assets/icons/user.png" className='h-14 my-auto' alt="" />
                 <div className='ml-3 my-auto'>
-                  <p>Taiwo Kehinde</p>
-                  <p className='text-xs'>taiwokehinde@yahoo.com</p>
+                  <p>{user.fName} {user.lName}</p>
+                  <p className='text-xs'>{user.email}</p>
                 </div>
-              </div>
-              <Link href={''}>
+              </div>)}
+              <Link href={'/admin/customers'}>
                 <p className='text-xs text-center p-3'>View all</p>
               </Link>
             </div>
