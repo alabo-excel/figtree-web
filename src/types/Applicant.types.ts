@@ -47,3 +47,14 @@ export interface JobType {
   view: any;
   _id: string;
 }
+
+export type BlogTypes = {
+  title: string;
+  brief: string;
+  body: string;
+  image: string;
+  views: any[];
+  reaction: any[];
+  _id: string;
+  date: string;
+}

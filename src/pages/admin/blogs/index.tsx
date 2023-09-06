@@ -1,8 +1,27 @@
+import BlogAdminCard from '@/components/cards/BlogAdmin';
 import AdminLayout from '@/layout/AdminLayout';
+import { BlogTypes } from '@/types/Applicant.types';
+import axios from 'axios';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 
 const BlogAdmin = () => {
+  const [blogs, setBlogs] = useState<BlogTypes[]>([])
+
+  useEffect(() => {
+    getBlogs()
+  }, [])
+
+  const getBlogs = async () => {
+    try {
+      const { data } = await axios.get('/blogs')
+      console.log(data)
+      setBlogs(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
   return (
     <AdminLayout>
       <div>
@@ -20,6 +39,9 @@ const BlogAdmin = () => {
         </div>
         <div className='my-4'>
           <input type="text" className='p-3 rounded-md mb-4 border w-1/2' placeholder='Search Blog' />
+          <div className='flex justify-between'>
+            {blogs.map((blog, index) => <BlogAdminCard blog={blog} key={index} />)}
+          </div>
         </div>
       </div>
     </AdminLayout>

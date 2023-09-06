@@ -35,6 +35,23 @@ const NewBlog = () => {
     }
   }
 
+  useEffect(() => {
+    getBlogs()
+  }, [query.page])
+
+  const getBlogs = async () => {
+    try {
+      const { data } = await axios.get(`/blog/${query.page}`)
+      console.log(data[0])
+      setTitle(data[0].title)
+      setBrief(data[0].brief)
+      setDiscription(data[0].discription)
+      setAfter(data[0].image)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const addBlog = async () => {
     try {
       setLoading(true)
@@ -53,6 +70,7 @@ const NewBlog = () => {
       router.push(`/admin/blogs`)
     } catch (err: any) {
       setLoading(false)
+      console.log(err)
       messageApi.open({
         type: 'error',
         content: err.response.data.message,
@@ -61,7 +79,29 @@ const NewBlog = () => {
   }
 
   const editBlog = async () => {
-
+    try {
+      setLoading(true)
+      const { data } = await axios.put(`/blog/${query.page}`, {
+        title,
+        brief,
+        body: discription,
+        image: after
+      })
+      messageApi.open({
+        type: 'success',
+        content: 'Blog edited successfully!',
+      });
+      console.log(data)
+      setLoading(false)
+      router.push(`/admin/blogs`)
+    } catch (err: any) {
+      setLoading(false)
+      console.log(err)
+      messageApi.open({
+        type: 'error',
+        content: err.response.data.message,
+      });
+    }
   }
 
   return (
@@ -70,12 +110,12 @@ const NewBlog = () => {
         {contextHolder}
         {query.page !== undefined ? <p className='font-bold text-2xl'>Edit blog post</p> : <p className='font-bold text-2xl'>Add a blog post</p>
         }
-        <div className='border p-6 rounded-xl'>
+        <div className='border p-6 my-6 rounded-xl'>
           <input value={title} onChange={e => setTitle(e.target.value)} type="text" className='p-4 text-3xl w-full ' placeholder='Add Title' />
 
           <textarea name="" value={brief} onChange={e => setBrief(e.target.value)} className='w-full p-4 h-32 bg-[#EFEFF7]' placeholder='Enter Summary'></textarea>
           <MdEditor modelValue={discription} onChange={setDiscription} language='en-US' toolbars={['bold', 'underline', 'italic', 'strikeThrough', 'title', 'sub', 'sup', 'quote', 'unorderedList', 'orderedList', 'link',]} />
-          <div className=''>
+          <div className='mt-4'>
             <input type="file" ref={afterRef} className="hidden" onChange={handleAfter} />
 
             {after === "" ? <div onClick={() => afterRef.current?.click()} className='border w-72 cursor-pointer h-52 pt-10 rounded-md text-center'>
