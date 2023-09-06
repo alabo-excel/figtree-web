@@ -85,7 +85,7 @@ const JobsPage = () => {
           </div>
         </div>
         <div className='my-4'>
-          <input type="text" className='p-3 rounded-md mb-4 border w-1/2' placeholder='Search Product' />
+          <input type="text" className='p-3 rounded-md mb-4 border w-1/2' placeholder='Search Job' />
           <Table columns={columns} dataSource={data} />
         </div>
       </div>
