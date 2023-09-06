@@ -1,8 +1,14 @@
 import Link from 'next/link';
 import React from 'react';
+import { deleteCookie } from 'cookies-next';
 
 const Sidebar = () => {
   const route = window.location.pathname
+
+  const logout = () => {
+    deleteCookie('token')
+    window.location.href = "/auth/login"
+  }
 
   return (
     <div className='fixed h-screen top-0 bg-black w-[20%]'>
@@ -42,7 +48,7 @@ const Sidebar = () => {
           <img src="/assets/icons/blog.png" alt="" /> <p className='my-auto text-sm ml-6'>Blogs </p>
         </div>
       </Link>
-      <div className='my-3 mt-auto p-4 flex text-white mx-auto'>
+      <div onClick={() => logout()} className='my-3 cursor-pointer mt-auto p-4 flex text-white mx-auto'>
         <img src="/assets/icons/logout.png" alt="" /> <p className='my-auto text-sm ml-6'>Logout </p>
       </div>
     </div>

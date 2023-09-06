@@ -20,7 +20,8 @@ const Login = () => {
       setCookie('token', data.token);
       setCookie('user', data.id)
       if (data.role === 'admin') {
-        router.push('/admin/dashboard')
+        window.location.href = "/admin/dashboard"
+        // router.push('/admin/dashboard')
       } else {
         router.push('/shop')
       }

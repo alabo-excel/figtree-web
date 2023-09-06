@@ -56,7 +56,7 @@ const Customers = () => {
   const getUsers = async () => {
     try {
       const { data } = await axios.get('users')
-      console.log(data)
+      // console.log(data)
       setData(data)
     } catch (err) {
       console.log(err)
