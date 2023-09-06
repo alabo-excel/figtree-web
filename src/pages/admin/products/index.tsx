@@ -92,7 +92,7 @@ const Products = () => {
       <div>
         {contextHolder}
         <p className='font-bold text-2xl'>Products</p>
-        <div className='m-4 border rounded-t-xl'>
+        <div className='my-4 border rounded-t-xl'>
           <div className='flex justify-between p-4'>
             <div className=''>
               <p className='text-xl'>All Products</p>

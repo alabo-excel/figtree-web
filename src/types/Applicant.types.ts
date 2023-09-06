@@ -37,3 +37,13 @@ export interface UserType {
   date: string;
   country: string;
 }
+
+export interface JobType {
+  title: string;
+  description: string;
+  summary: string;
+  date: string;
+  delete: any;
+  view: any;
+  _id: string;
+}

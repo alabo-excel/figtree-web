@@ -158,7 +158,7 @@ const New = () => {
             <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder='Enter Description' className='p-3 rounded-md bg-[#EFEFF7] w-full h-40' ></textarea>
           </div>
 
-          <div className='float-right'>
+          <div className=''>
             <Link href={'/admin/products'}><button className='p-3 font-bold px-6 rounded-md'>Cancel</button></Link>
             {query.page !== undefined ? <button onClick={() => editReview()} className='p-3 font-bold bg-warning rounded-md px-6'>{loading ? 'loading...' : 'Edit'}</button> : <button onClick={() => addReview()} className='p-3 font-bold bg-warning rounded-md px-6'>{loading ? 'loading...' : 'Publish'}</button>
             }
