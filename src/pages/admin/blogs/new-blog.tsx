@@ -45,7 +45,7 @@ const NewBlog = () => {
       console.log(data[0])
       setTitle(data[0].title)
       setBrief(data[0].brief)
-      setDiscription(data[0].discription)
+      setDiscription(data[0].body)
       setAfter(data[0].image)
     } catch (err) {
       console.log(err)

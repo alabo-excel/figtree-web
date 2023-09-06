@@ -32,6 +32,9 @@ const Blog = () => {
             <img src="/assets/icons/Back.png" className='h-6' alt="" /> <p className='text-xl fontbold my-auto ml-4'>Back</p>
           </div>
         </Link>
+        <Link href={`/admin/blogs/new-blog?page=${blog?._id}`}>
+          <button className='float-right p-4 bg-warning my-6 font-bold rounded-md px-8'>Edit Blog</button>
+        </Link>
         <div>
           <p className='text-[#00000080] my-2'>{blog?.date.substring(0, 10)}</p>
           <p className='text-3xl my-3'>{blog?.title}</p>
