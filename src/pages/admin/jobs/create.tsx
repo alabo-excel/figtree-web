@@ -24,7 +24,7 @@ const CreateJob = () => {
   const getJob = async () => {
     try {
       const { data } = await axios.get(`/careers/${query.page}`)
-      console.log(data[0])
+      // console.log(data[0])
       setTitle(data[0].title)
       setDiscription(data[0].description)
       setSummary(data[0].summary)
@@ -58,7 +58,27 @@ const CreateJob = () => {
   }
 
   const editJob = async () => {
-
+    try {
+      setLoading(true)
+      const { data } = await axios.put(`/careers/${query.page}`, {
+        title,
+        description: discription,
+        summary
+      })
+      messageApi.open({
+        type: 'success',
+        content: 'Job edited successfully!',
+      });
+      console.log(data)
+      setLoading(false)
+      router.push(`/admin/jobs`)
+    } catch (err: any) {
+      setLoading(false)
+      messageApi.open({
+        type: 'error',
+        content: err.response.data.message,
+      });
+    }
   }
 
   return (

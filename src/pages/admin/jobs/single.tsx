@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { MdPreview, MdCatalog } from 'md-editor-rt';
 
 const SingleJob = () => {
-  const [data, setData] = useState<JobType>()
+  const [data, setData] = useState<JobType | null>(null)
   const { query } = useRouter()
   const [id] = useState('preview-only');
 
@@ -38,9 +38,7 @@ const SingleJob = () => {
           </div>
         </div>
         <div className='border rounded-b-xl p-4'>
-        <MdPreview editorId={id} modelValue={data?.description} />
-
-          {}
+        {data !== null && <MdPreview editorId={id} modelValue={data.description} />}
         </div>
       </div>
     </AdminLayout>
