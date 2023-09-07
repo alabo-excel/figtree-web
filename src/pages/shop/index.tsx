@@ -27,8 +27,8 @@ const Shop = () => {
     <MainLayout>
       <div>
         <ShopBanner text="All Skincare" />
-        <div className='lg:mx-20'>
-          <div className="lg:flex flex-wrap justify-between">
+        <div className='lg:mx-20 mx-4'>
+          <div className="flex flex-wrap justify-between">
             {products.map((item, index) => (
               <ShopCard key={index} item={item} />
             ))}

@@ -88,7 +88,7 @@ export default function Home() {
           </div>
           <div className="mt-20">
             <HeadingText text="Shop Most Loved" index="2" />
-            <div className="lg:flex justify-between">
+            <div className="flex flex-wrap justify-between">
               {suggestions.map((item, index) => (
                 <ProductCard key={index} item={item} />
               ))}
@@ -96,22 +96,25 @@ export default function Home() {
           </div>
           <div className="mt-20">
             <HeadingText text="Shop Best Sellers" index="2" />
-            <div className="lg:flex justify-between">
+            <div className="flex flex-wrap justify-between">
               {mostSold.map((item, index) => (
                 <ProductCard key={index} item={item} />
               ))}
             </div>
           </div>
         </section >
-        <div className="bg-[#FFDAB9] flex justify-evenly my-20">
+        <div className="bg-[#FFDAB9] relative flex justify-evenly p-[105px] my-20">
+          <div className="sm:hidden absolute left-0">
+            <img className="w-[80%]" src="/assets/left.png" alt="" />
+          </div>
           <div className="my-auto text-center">
             <h2 className="text-5xl">Newly Launched</h2>
             <p className="my-3 text-lg">They’re here!</p>
             <p className="my-4">New products formulated to <br /> suit your specific needs </p>
             <button className="p-3 my-3 rounded-md bg-warning w-1/2 ">Shop here</button>
           </div>
-          <div className="sm:hidden">
-            <img className="w-[80%]" src="/assets/user.png" alt="" />
+          <div className="sm:hidden absolute -right-36">
+            <img className="w-[80%]" src="/assets/right.png" alt="" />
           </div>
         </div>
         <div className="lg:p-8 p-4">
@@ -121,7 +124,7 @@ export default function Home() {
               <Link href={'/reviews'}>See all</Link>
             </p>
           </div>
-          <div className="lg:flex justify-between my-8">
+          <div className="flex flex-wrap justify-between my-8">
             {reviews.slice(0, 3).map((review, index) => <ReviewCard key={index} review={review} />)}
           </div>
         </div>

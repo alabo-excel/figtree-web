@@ -19,14 +19,14 @@ const SingleProduct = () => {
   const getProducts = async () => {
     try {
       const { data } = await axios.get(`product/${query.page}`)
-      console.log(data[0])
+      // console.log(data[0])
       setProduct(data[0])
     } catch (err) {
       console.log(err)
     }
     try {
       const { data } = await axios.get(`suggest`)
-      console.log(data)
+      // console.log(data)
       setProducts(data)
     } catch (err) {
       console.log(err)
@@ -46,11 +46,11 @@ const SingleProduct = () => {
     <MainLayout>
       <div>
         <ShopBanner text="Product Details" />
-        <div className='flex p-10'>
-          <div className='w-[40%]'>
+        <div className='lg:flex lg:p-10 p-4'>
+          <div className='lg:w-[40%]'>
             <img className='w-full' src={product?.image[0]} alt="" />
           </div>
-          <div className='w-[40%] ml-20 my-auto p-2'>
+          <div className='lg:w-[40%] lg:ml-20 my-auto p-2'>
             <h2 className='text-4xl font-bold'>{product?.title}</h2>
             <p className='my-2'>N {product?.price}</p>
             <p className='text-xs'>Shipping calculated at checkout</p>
@@ -66,7 +66,7 @@ const SingleProduct = () => {
             <button className='p-4 w-full bg-black rounded-sm my-4 text-white'>Buy it now</button>
           </div>
         </div>
-        <div className='p-8'>
+        <div className='lg:p-8 p-4'>
           <div className='flex'>
             <p onClick={() => setDesc(!desc)} className='text-2xl cursor-pointer'>Description</p>
             <p onClick={() => setDesc(!desc)} className='text-2xl ml-10 cursor-pointer'>Reviews</p>
@@ -82,7 +82,7 @@ const SingleProduct = () => {
           }
           <div>
             <p className='text-2xl my-4'>Suggested for you</p>
-            <div className="lg:flex justify-between">
+            <div className="flex flex-wrap justify-between">
               {products.map((item, index) => (
                 <ShopCard key={index} item={item} />
               ))}
