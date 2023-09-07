@@ -3,14 +3,16 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { setCookie } from 'cookies-next';
-import router from 'next/router';
 import { message } from 'antd';
+import { useDispatch } from 'react-redux';
+import { setUser } from '@/store/slices/userSlice'
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState<String>('')
   const [password, setPassword] = useState<String>('')
   const [messageApi, contextHolder] = message.useMessage();
+  const dispatch = useDispatch();
 
   const login = async () => {
     try {
@@ -19,11 +21,13 @@ const Login = () => {
       console.log(data)
       setCookie('token', data.token);
       setCookie('user', data.id)
+      getUser(data.id)
       if (data.role === 'admin') {
         window.location.href = "/admin/dashboard"
         // router.push('/admin/dashboard')
       } else {
-        router.push('/shop')
+        window.location.href = "/shop"
+        // router.push('/shop')
       }
       setLoading(false)
     } catch (err: any) {
@@ -34,6 +38,12 @@ const Login = () => {
         content: err.response.data.message,
       });
     }
+  }
+
+  const getUser = async (id: string) => {
+    const { data } = await axios.get(`user/${id}`)
+    dispatch(setUser({ ...data, id: id }));
+    console.log(data)
   }
 
   return (

@@ -3,10 +3,14 @@ import MainLayout from '@/layout/MainLayout';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectCart } from "@/store/slices/cartSlice.js"
+import { selectUser } from "@/store/slices/userSlice"
+
 import { ProductType } from '@/types/Applicant.types';
 import axios from 'axios';
-import { usePaystackPayment } from 'react-paystack';
-import { PaystackProps } from "react-paystack/dist/types"
+import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
+
+// import { usePaystackPayment } from 'react-paystack';
+// import { PaystackProps } from "react-paystack/dist/types"
 
 const Checkout = () => {
   const [step, setStep] = useState(1)
@@ -14,10 +18,12 @@ const Checkout = () => {
   const [ship, setShip] = useState(true)
   const [countries, setCountries] = useState([])
   const [cities, setCities] = useState([])
+  const user = useSelector(selectUser)
 
+  const [email, setEmail] = useState(user.email)
   const [country, setCountry] = useState("")
   const [state, setState] = useState("")
-  const [name, setName] = useState("")
+  const [name, setName] = useState(user.name)
   const [phone, setPhone] = useState("")
   const [city, setCity] = useState("")
   const [houseNo, setHouseNo] = useState("")
@@ -150,13 +156,25 @@ const Checkout = () => {
     setStep(2)
   }
 
-  const config: PaystackProps = {
-    reference: (new Date()).getTime().toString(),
-    email: "user@example.com",
+  const config = {
+    public_key: "FLWPUBK_TEST-e7c8f332b9d34b01b958cf4f4f643018-X",
+    tx_ref: (new Date()).getTime().toString(),
+    amount: getTotal() + shippingCost,
     currency: "NGN",
-    amount: getTotal() + shippingCost * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
-    publicKey: 'pk_test_dsdfghuytfd2345678gvxxxxxxxxxx',
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
+      email: email,
+      phone_number: phone,
+      name: name,
+    },
+    customizations: {
+      title: "Figtree Product Payment",
+      description: "Payment for items in cart",
+      logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
+    },
   };
+
+
 
   const onSuccess = async () => {
     console.log("done");
@@ -174,7 +192,7 @@ const Checkout = () => {
     console.log('closed')
   }
 
-  const initializePayment = usePaystackPayment(config);
+  const handleFlutterPayment = useFlutterwave(config);
 
   return (
     <MainLayout>
@@ -339,7 +357,13 @@ const Checkout = () => {
                   <p className='text-sm my-3'> <strong>Note:</strong> Receiver is responsible for any additional charges like custom duties </p>
 
                 </div>}
-                <button onClick={() => initializePayment(onSuccess, onClose)} className='bg-warning p-3 w-full rounded-md my-4'>Checkout</button>
+                <button onClick={() => handleFlutterPayment({
+                  callback: (response) => {
+                    console.log(response);
+                    closePaymentModal();
+                  },
+                  onClose: () => { },
+                })} className='bg-warning p-3 w-full rounded-md my-4'>Checkout</button>
               </div>}
             </div> : <Pickup />}
           </div>
