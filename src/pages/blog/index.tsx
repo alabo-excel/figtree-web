@@ -15,7 +15,7 @@ const Blog = () => {
   const getBlogs = async () => {
     try {
       const { data } = await axios.get('/blogs')
-      console.log(data)
+      // console.log(data)
       setBlogs(data)
     } catch (err) {
       console.log(err)

@@ -16,7 +16,7 @@ const Signup = () => {
     try {
       setLoading(true)
       const { data } = await axios.post('register', { fName, lName, email, password })
-      console.log(data)
+      // console.log(data)
       setLoading(false)
       router.push('/auth/login')
     } catch (err) {

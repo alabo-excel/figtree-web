@@ -18,7 +18,7 @@ const Login = () => {
     try {
       setLoading(true)
       const { data } = await axios.post('login', { email, password })
-      console.log(data)
+      // console.log(data)
       setCookie('token', data.token);
       setCookie('user', data.id)
       getUser(data.id)
@@ -43,7 +43,7 @@ const Login = () => {
   const getUser = async (id: string) => {
     const { data } = await axios.get(`user/${id}`)
     dispatch(setUser({ ...data, id: id }));
-    console.log(data)
+    // console.log(data)
   }
 
   return (

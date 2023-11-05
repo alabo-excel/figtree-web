@@ -42,9 +42,9 @@ const FooterNav = () => {
         <Link href={'/distributors'}>
           <p className='my-4'>Where to buy</p>
         </Link>
-        <Link href={'/'}>
+        {/* <Link href={'/'}>
           <p className='my-4'>Sitemaps</p>
-        </Link>
+        </Link> */}
       </div>
       <div>
         <h2 className='lg:text-3xl text-xl my-4'>Connect With Us</h2>

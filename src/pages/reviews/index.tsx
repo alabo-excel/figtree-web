@@ -10,7 +10,7 @@ const Reviews = () => {
   const getReviews = async () => {
     try {
       const { data } = await axios.get('reviews')
-      console.log(data)
+      // console.log(data)
       setReviews(data)
     } catch (err) {
       console.log(err);
