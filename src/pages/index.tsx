@@ -3,6 +3,7 @@ import Slider from "@/components/Slider";
 import CategoryCard from "@/components/cards/CategoryCard";
 import ProductCard from "@/components/cards/ProductCard";
 import ReviewCard from "@/components/cards/ReviewCard";
+import Map from "@/components/cards/Map";
 import MainLayout from "@/layout/MainLayout";
 import { ProductType, Review } from "@/types/Applicant.types";
 import axios from "axios";
@@ -111,7 +112,7 @@ export default function Home() {
             <h2 className="text-5xl">Newly Launched</h2>
             <p className="my-3 text-lg">They’re here!</p>
             <p className="my-4">New products formulated to <br /> suit your specific needs </p>
-            <button className="p-3 my-3 rounded-md bg-warning w-1/2 ">Shop here</button>
+            <button className="p-3 my-3 rounded-md bg-warning w-1/2 "><Link href={'/shop/new'}>Shop here</Link></button>
           </div>
           <div className="sm:hidden absolute -right-36">
             <img className="w-[80%]" src="/assets/right.png" alt="" />
@@ -134,12 +135,10 @@ export default function Home() {
           <div className="absolute lg:top-40 top-6 left-0 right-0 text-center">
             <h2 className="text-4xl text-white">Sign up & get up 10% discount</h2>
             <p className="text-white my-6">Sign up for instant discount & Shop you faves</p>
-            <button className="p-3 my-3 rounded-md bg-warning px-10 ">Sign up</button>
+            <button className="p-3 my-3 rounded-md bg-warning px-10 "><Link href={'/auth/signup'}>Sign Up</Link></button>
           </div>
         </div>
-        <div>
-          <img src="/assets/map.png" className="w-full" alt="" />
-        </div>
+        <Map/>
       </div >
     </MainLayout >
   )

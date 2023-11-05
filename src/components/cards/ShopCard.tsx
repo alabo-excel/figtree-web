@@ -9,7 +9,7 @@ const ShopCard = ({ item }: { item: any }) => {
       <div className='flex justify-between py-2 '>
         <div className=''>
           <p className='lg:text-base text-sm'>{item.title}</p>
-          <p className=''>{item.price}</p>
+          <p className=''>N {item.price}</p>
         </div>
         <div className='flex'>
           <img src="/assets/icons/favourite.png" className='w-4 h-4 lg:mx-2' alt="" />

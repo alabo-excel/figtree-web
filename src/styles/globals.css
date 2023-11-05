@@ -9,7 +9,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+html{
+  scroll-behavior:smooth;
+}
 body {
   font-family: 'Axiforma' !important;
   overflow-x: hidden;
@@ -58,4 +60,13 @@ ul li {
 
 .checkbox:checked+.check-icon {
   display: flex;
+}
+
+.address-map{
+  width: 100%;
+  height: 400px;
+}
+.address-map iframe{
+  width: 100%;
+  height: 100%; 
 }

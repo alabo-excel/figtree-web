@@ -55,11 +55,16 @@ const FooterNav = () => {
         </div>
         <div className='my-4'>
           <p className='text-orange'>Walk in Store</p>
-          <p className='text-sm'>20A Emma Abimbola Cole Street, Lagos.</p>
+          <p className='text-sm'>Lekki-20A Emma Abimbola Cole Street, Lekki phase 1, Lagos.</p>
+          <p className='text-sm'>Victoria Island - Fourteen36 mall, Sanisi Fafunwa, Lagos.</p>
+          <p className='text-sm'>Lekki- The palms Mall, opposite Mobos, Lagos.</p>
+          
         </div>
         <div className='my-4'>
           <p className='text-orange'>Get in touch</p>
-          <p className='text-sm'>+234198071898</p>
+          <p className='text-sm'>+2349086120741</p>
+          <p className='text-sm'>+2349088400800</p>
+          <p className='text-sm'>+2349088400807</p>
         </div>
       </div>
     </div>

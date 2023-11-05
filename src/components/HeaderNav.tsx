@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo} from 'react';
 import AboutUs from './dropdowns/AboutUs';
 import Resources from './dropdowns/Resources';
 import Shop from './dropdowns/Shop';
@@ -23,7 +23,7 @@ const HeaderNav = () => {
       // console.log(data)
       await axios.get(`https://restcountries.com/v3.1/name/${data.addressCountry}`)
         .then((response) => {
-          console.log(response.data[0])
+          // console.log(response.data[0])
           setCountry(response.data[0])
         })
     } catch (e) {
@@ -41,12 +41,15 @@ const HeaderNav = () => {
       .catch((err) => console.log(err))
   }, [])
 
-  useEffect(() => {
+
+  //THE useMemo is used to avoid the constant modal pop-up for users country
+  const memoizedValue = useMemo(() => {
     if (token === undefined) {
-      setModal(true)
+      getUserCountry()
     }
-    getUserCountry()
-  }, [])
+    return token
+  }, [token]);
+
 
   return (
     <div>
@@ -128,7 +131,7 @@ const HeaderNav = () => {
         </div>
       }
       {
-        modal && <div className='fixed top-44 bottom-40 z-10 mx-auto left-0 right-0 lg:w-[70%]'>
+        memoizedValue && <div className='fixed top-44 bottom-40 z-10 mx-auto left-0 right-0 lg:w-[70%]'>
           <div className='flex'>
             <div className='lg:block hidden'>
               <img src="/assets/logo-black.png" alt="" />

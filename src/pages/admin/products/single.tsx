@@ -12,7 +12,6 @@ const SingleProduct = () => {
   const getProduct = async () => {
     try {
       const { data } = await axios.get(`product/${query.page}`)
-      console.log(data[0])
       setProduct(data[0])
     } catch (err) {
       console.log(err)
