@@ -5,6 +5,11 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
+
+const prevPage= ()=>{
+  history.back()
+}
+
 const Single = () => {
   const [review, setReview] = useState<Review>()
   const { query } = useRouter()
@@ -27,13 +32,16 @@ const Single = () => {
       <div>
         <ShopBanner text="Reviews" />
         <div className='lg:w-[80%] mx-auto lg:mt-10'>
-          <div className='flex'>
-            <img className='w-1/2 h-80 object-cover' src={review?.image[0]} alt="" />
-            <img className='w-1/2 h-80 object-cover' src={review?.image[1]} alt="" />
+          <div className='flex mt-10 sm:flex-col gap-3'>
+            <img className='w-1/2 h-80 object-cover sm:object-contain sm:w-full' src={review?.image[0]} alt="" />
+            <img className='w-1/2 h-80 object-cover sm:object-contain sm:w-full' src={review?.image[1]} alt="" />
           </div>
           <div>
             <p className='text-[#F26122] text-xl text-center my-3'>{review?.title}</p>
-            <p>{review?.description}</p>
+            <p className='lg:text-base text-sm px-3'>{review?.description}</p>
+            <p className="mb-28 mt-7 flex justify-center">
+              <button onClick={prevPage} className='p-3 m-auto rounded-sm lg:w-[20%] md:w-[50%] sm:w-[90%] bg-warning'>Go Back</button>
+            </p>
           </div>
         </div>
       </div>

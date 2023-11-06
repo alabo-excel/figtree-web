@@ -5,7 +5,7 @@ import React from 'react';
 const ReviewCard = ({ review }: { review: Review }) => {
   const route = window.location.pathname
   return (
-    <div className='lg:w-[30%] w-[48%] lg:my-0 my-4'>
+    <div className='lg:w-[30%] w-[33.33%] lg:my-0 my-4 sm:w-[100%]'>
       <div className='flex'>
         <img className='w-1/2 h-52 object-cover' src={review.image[0]} alt="" />
         <img className='w-1/2 h-52 object-cover' src={review.image[1]} alt="" />

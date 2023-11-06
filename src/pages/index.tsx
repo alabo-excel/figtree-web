@@ -8,12 +8,55 @@ import MainLayout from "@/layout/MainLayout";
 import { ProductType, Review } from "@/types/Applicant.types";
 import axios from "axios";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useMemo } from "react";
+import { useSelector } from 'react-redux';
+import { selectCart } from "@/store/slices/cartSlice.js"
+import { getCookie } from 'cookies-next';
 
 export default function Home() {
   const [suggestions, setSuggestions] = useState<ProductType[]>([])
   const [mostSold, setMostSold] = useState<ProductType[]>([])
   const [reviews, setReviews] = useState<Review[]>([])
+  const [country, setCountry] = useState<any>()
+  const [modal, setModal] = useState(false)
+  const token = getCookie('token')
+  const [countries, setCountries] = useState([])
+  const [newCountry, setNewCountry] = useState<any>();
+
+
+  const getUserCountry = async () => {
+    try {
+      const { data } = await axios.get("https://figtree.onrender.com/")
+      // console.log(data)
+      await axios.get(`https://restcountries.com/v3.1/name/${data.addressCountry}`)
+        .then((response) => {
+          // console.log(response.data[0])
+          setCountry(response.data[0])
+        })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  useEffect(() => {
+    // Get countries
+    axios
+      .get(window.location.origin + "/api/getCountries")
+      .then((res) => {
+        const calculated = res.data.map((country: any) => ({ label: country, value: country }))
+        setCountries(calculated)
+      })
+      .catch((err) => console.log(err))
+  }, [token])
+
+  const memoizedValue = useMemo(() => {
+    if (token === undefined) {
+      setModal(true) 
+      getUserCountry()
+    }
+    
+    return token
+  }, [token]);
+
 
   const getSuggestions = async () => {
     try {
@@ -79,6 +122,27 @@ export default function Home() {
   return (
     <MainLayout>
       <div>
+      {
+        modal && <div className='fixed top-44 bottom-40 z-10 mx-auto left-0 right-0 lg:w-[70%]'>
+          <div className='flex'>
+            <div className='lg:block hidden'>
+              <img src="/assets/logo-black.png" alt="" />
+            </div>
+            <div className='p-6 bg-white text-center relative'>
+              <h1 className='text-3xl mt-4'>Looks Like You’re In {country?.name.common}</h1>
+              <p className='my-6'>Not in {country?.name.common}? Change your region or country.</p>
+              <select onChange={e => setNewCountry(e.target.value)} value={newCountry} className='p-3 border-2 rounded-md w-full'>
+                <option value={country?.name.common} className='hidden'>{country?.name.common}</option>
+                {countries.map((country: { label: string, value: string }, index) => <option key={index} value={country.label}>{country.value}</option>)}
+              </select>
+              <button className='bg-warning p-3 mt-4'>Change Country</button>
+              <div>
+                <img onClick={() => setModal(false)} className='absolute cursor-pointer top-2 right-2' src="/assets/icons/iconamoon_close-thin.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      }
         <Slider />
         <section className="lg:mx-32 mx-4">
           <HeadingText text="Shop By Category" index="1" />

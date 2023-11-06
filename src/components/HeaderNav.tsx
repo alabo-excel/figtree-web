@@ -12,10 +12,10 @@ const HeaderNav = () => {
   const cart = useSelector(selectCart)
   const [menu, setMenu] = useState(false)
   const [country, setCountry] = useState<any>()
-  const [modal, setModal] = useState(false)
+  // const [modal, setModal] = useState(false)
   const token = getCookie('token')
   const [countries, setCountries] = useState([])
-  const [newCountry, setNewCountry] = useState<any>()
+  // const [newCountry, setNewCountry] = useState<any>()
 
   const getUserCountry = async () => {
     try {
@@ -30,8 +30,11 @@ const HeaderNav = () => {
       console.log(e)
     }
   }
+
+
   useEffect(() => {
     // Get countries
+    getUserCountry()
     axios
       .get(window.location.origin + "/api/getCountries")
       .then((res) => {
@@ -43,22 +46,22 @@ const HeaderNav = () => {
 
 
   //THE useMemo is used to avoid the constant modal pop-up for users country
-  const memoizedValue = useMemo(() => {
-    if (token === undefined) {
-      setModal(true) 
-      getUserCountry()
-    }
+  // const memoizedValue = useMemo(() => {
+  //   if (token === undefined) {
+  //     setModal(true) 
+  //     getUserCountry()
+  //   }
     
-    return token
-  }, [token]);
+  //   return token
+  // }, [token]);
 
   return (
     <div>
       <div className='bg-black p-3'>
         <div className='ml-auto w-28 flex justify-between'>
           <img className='w-6 h-6' src="/assets/icons/lucide_facebook.png" alt="" />
-          <img className='w-6 h-6' src="/assets/icons/mdi_instagram.png" alt="" />
-          <img className='w-6 h-6' src="/assets/icons/ri_twitter-line.png" alt="" />
+          <Link href={'https://instagram.com/figtree_company?igshid=MW8wYnpveWh4YWtmaw=='}><img className='w-6 h-6' src="/assets/icons/mdi_instagram.png" alt="" /></Link>
+          <Link href={'https://x.com/figtree_company?s=09'}><img className='w-6 h-6' src="/assets/icons/ri_twitter-line.png" alt="" /></Link>
         </div>
       </div>
       <div className='lg:w-[25%] w-1/2 mx-auto'>
@@ -131,7 +134,7 @@ const HeaderNav = () => {
           </div>
         </div>
       }
-      {
+      {/* {
         modal && <div className='fixed top-44 bottom-40 z-10 mx-auto left-0 right-0 lg:w-[70%]'>
           <div className='flex'>
             <div className='lg:block hidden'>
@@ -151,7 +154,7 @@ const HeaderNav = () => {
             </div>
           </div>
         </div>
-      }
+      } */}
 
     </div>
   );
