@@ -37,6 +37,7 @@ const Careers = () => {
           </div>)}
         </div> : <div className='text-center lg:p-8 p-4 lg:w-[80%] mx-auto'>
           <p className='text-lg'> Thanks for your interest in joining Figtree Company. However, we have no current openings at the moment. Kindly check at a later date.</p>
+          <p className='text-lg'>You can reachout to us via mail at: <span><a className='text-orange ' href="mailto:hr@figtreecompany.co">hr@figtreecompany.co</a></span> and we will consider you first when there is an opening.</p>
         </div>}
       </div>
     </MainLayout>

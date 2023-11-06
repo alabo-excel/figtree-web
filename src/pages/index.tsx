@@ -121,12 +121,14 @@ export default function Home() {
         <div className="lg:p-8 p-4">
           <div>
             <h2 className="text-3xl text-center">We Love Reviews.....</h2>
-            <p className="float-right">
-              <Link href={'/reviews'}>See all</Link>
-            </p>
           </div>
           <div className="flex flex-wrap justify-between my-8">
             {reviews.slice(0, 3).map((review, index) => <ReviewCard key={index} review={review} />)}
+          </div>
+          <div>
+            <p className="float-right">
+              <Link href={'/reviews'}>See all</Link>
+            </p>
           </div>
         </div>
         <div className="lg:my-20 my-10 relative">

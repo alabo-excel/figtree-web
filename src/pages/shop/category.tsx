@@ -13,7 +13,7 @@ const Shop = () => {
   const getProducts = async () => {
     try {
       const { data } = await axios.get('product/category/' + query.page)
-      console.log(data)
+      // console.log(data)
       setProducts(data)
     } catch (err) {
       console.log(err)

@@ -39,17 +39,18 @@ const HeaderNav = () => {
         setCountries(calculated)
       })
       .catch((err) => console.log(err))
-  }, [])
+  }, [token])
 
 
   //THE useMemo is used to avoid the constant modal pop-up for users country
   const memoizedValue = useMemo(() => {
     if (token === undefined) {
+      setModal(true) 
       getUserCountry()
     }
+    
     return token
   }, [token]);
-
 
   return (
     <div>
@@ -131,7 +132,7 @@ const HeaderNav = () => {
         </div>
       }
       {
-        memoizedValue && <div className='fixed top-44 bottom-40 z-10 mx-auto left-0 right-0 lg:w-[70%]'>
+        modal && <div className='fixed top-44 bottom-40 z-10 mx-auto left-0 right-0 lg:w-[70%]'>
           <div className='flex'>
             <div className='lg:block hidden'>
               <img src="/assets/logo-black.png" alt="" />
