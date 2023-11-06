@@ -146,7 +146,16 @@ const Checkout = () => {
   }, [step])
 
   const getTotal = () => {
-    return parseInt(cart.map((item: { price: number; count: number; }) => item.price * item.count))
+    return cart.map((item: { price: number; count: number; }) => item.price * item.count)
+  }
+
+  const subTotalSum = ()=>{
+    const total= getTotal();
+    let sum= total.reduce((prev:number, curr:number)=>{
+        return prev+curr
+    })
+
+    return sum
   }
 
   const nextStep = () => {
@@ -214,7 +223,7 @@ const Checkout = () => {
             <div className='border-t border-t-gray my-6'></div>
             <div className='flex justify-between my-2'>
               <p>Subtotal</p>
-              <p>N {getTotal()}</p>
+              <p>N {subTotalSum()}</p>
             </div>
             <div className='flex justify-between my-2'>
               <p>Estimated shipping  </p>
@@ -222,7 +231,7 @@ const Checkout = () => {
             </div>
             <div className='flex text-xl font-bold my-2 justify-between'>
               <p>Total </p>
-              <p>N {getTotal() + shippingCost}</p>
+              <p>N {subTotalSum() + shippingCost}</p>
             </div>
           </div>
           <div className='lg:w-[60%] sm:mt-10'>

@@ -35,6 +35,15 @@ const Cart = () => {
     })
   }
 
+  const subTotalSum = ()=>{
+    const total= getTotal();
+    let sum= total.reduce((prev:number, curr:number)=>{
+        return prev+curr
+    })
+
+    return sum
+  }
+
   
   useEffect(() => {
     getSuggestion()
@@ -44,8 +53,9 @@ const Cart = () => {
 
   return (
     <MainLayout>
+      
       <div>
-        <ShopBanner text="Shopping Cart" />
+        <ShopBanner text="Shopping Cart"/>
         <div className='lg:flex lg:p-8 p-4'>
           <div className='w-full'>
             {
@@ -53,7 +63,7 @@ const Cart = () => {
             }
             <div className='border-t border-t-gray my-6'></div>
             <div className='float-right'>
-              <p className='font-bold text-xl'>Subtotal ({cart.length} item): N{getTotal()}</p>
+              <p className='font-bold text-xl'>Subtotal ({cart.length} item): N{subTotalSum()}</p>
               <p className='my-4'>Looking for more? <Link href={'/shop'}> <span className='text-orange'> Continue Shopping</span> </Link></p>
             </div>
 
@@ -75,7 +85,7 @@ const Cart = () => {
           </div>
           <div className='lg:w-[30%]'>
             <div className='text-center p-10 shadow-lg rounded-md'>
-              <p className='font-bold text-xl'>Subtotal ({cart.length} item): N{getTotal()}</p>
+              <p className='font-bold text-xl'>Subtotal ({cart.length} item): N{subTotalSum()}</p>
               <Link href={'/shop/checkout'}><button className='p-3 rounded-md w-full bg-warning my-4'>Proceed to checkout</button></Link>
             </div>
             <div className='shadow-lg rounded-md p-6 mt-6'>
