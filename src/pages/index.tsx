@@ -168,6 +168,7 @@ export default function Home() {
             </div>
           </div>
         </section >
+
         <div className="bg-[#FFDAB9] relative flex justify-evenly p-[105px] my-20">
           <div className="sm:hidden absolute left-0">
             <img className="w-[80%]" src="/assets/left.png" alt="" />

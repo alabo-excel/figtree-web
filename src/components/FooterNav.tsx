@@ -49,9 +49,9 @@ const FooterNav = () => {
       <div>
         <h2 className='lg:text-3xl text-xl my-4'>Connect With Us</h2>
         <div className='w-28 my-4 flex justify-between'>
-          <img className='w-6 h-6' src="/assets/icons/lucide_facebook.png" alt="" />
-          <img className='w-6 h-6' src="/assets/icons/mdi_instagram.png" alt="" />
-          <img className='w-6 h-6' src="/assets/icons/ri_twitter-line.png" alt="" />
+          <Link href={'https://t.me/figtreeco'}><img className='w-6 h-6' src="/assets/icons/telegram_img.jpg" alt="" /></Link>
+          <Link href={'https://instagram.com/figtree_company?igshid=MW8wYnpveWh4YWtmaw=='}><img className='w-6 h-6' src="/assets/icons/mdi_instagram.png" alt="" /></Link>
+          <Link href={'https://x.com/figtree_company?s=09'}><img className='w-6 h-6' src="/assets/icons/ri_twitter-line.png" alt="" /></Link>
         </div>
         <div className='my-4'>
           <p className='text-orange'>Walk in Store</p>

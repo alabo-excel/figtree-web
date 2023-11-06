@@ -59,7 +59,7 @@ const HeaderNav = () => {
     <div>
       <div className='bg-black p-3'>
         <div className='ml-auto w-28 flex justify-between'>
-          <img className='w-6 h-6' src="/assets/icons/lucide_facebook.png" alt="" />
+          <Link href={'https://t.me/figtreeco'}><img className='w-6 h-6' src="/assets/icons/telegram_img.jpg" alt="" /></Link>
           <Link href={'https://instagram.com/figtree_company?igshid=MW8wYnpveWh4YWtmaw=='}><img className='w-6 h-6' src="/assets/icons/mdi_instagram.png" alt="" /></Link>
           <Link href={'https://x.com/figtree_company?s=09'}><img className='w-6 h-6' src="/assets/icons/ri_twitter-line.png" alt="" /></Link>
         </div>

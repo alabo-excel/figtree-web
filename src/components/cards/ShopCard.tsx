@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 const ShopCard = ({ item }: { item: any }) => {
 
   return (
-    <div className='lg:w-[24%] w-[48%] '>
-      <Link href={`/shop/single?page=${item._id}`}><img className='w-full oject-cover' src={item.image[0]} alt="" /></Link>
-      <div className='flex justify-between py-2 '>
+    <div className='lg:w-[30%] w-[33.33%] sm:w-[100%] my-4 '>
+      <Link href={`/shop/single?page=${item._id}`}><img className='w-full h-52 object-cover' src={item.image[0]} alt="" /></Link>
+      <div className='flex justify-between py-2'>
         <div className=''>
           <p className='lg:text-base text-sm'>{item.title}</p>
           <p className=''>N {item.price}</p>
