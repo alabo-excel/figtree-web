@@ -33,6 +33,8 @@ const SingleProduct = () => {
     }
   }
 
+
+
   useEffect(() => {
     getProducts()
   }, [query.page])
@@ -41,6 +43,10 @@ const SingleProduct = () => {
     dispatch(addCart({ ...product, count: count }))
     router.push('/shop/cart')
   }
+
+ 
+
+ 
 
   return (
     <MainLayout>

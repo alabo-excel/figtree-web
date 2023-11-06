@@ -38,7 +38,7 @@ const CartCard = ({ item, pos }: { item: ProductType, pos: React.Key | null | un
   return (
     <div className='flex'>
       <div>
-        <img className='w-72' src="/assets/ing1.png" alt="" />
+        <img className='w-72' src={item.image[0]} alt="" />
       </div>
       <div className='ml-8'>
         <h1 className='text-3xl font-bold'>{item.title}</h1>

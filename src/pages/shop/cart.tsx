@@ -22,7 +22,7 @@ const Cart = () => {
   const getSuggestion = async () => {
     try {
       const { data } = await axios.get('product')
-      console.log(data)
+      // console.log(data)
       setSuggestion(data)
     } catch (e) {
       console.log(e)
@@ -30,8 +30,11 @@ const Cart = () => {
   }
 
   const getTotal = () => {
-    return cart.map((item: { price: number; count: number; }) => item.price * item.count)
+    return cart.map( (item: { price: number; count: number; }):number=>{
+      return item.price * item.count  
+    })
   }
+
   
   useEffect(() => {
     getSuggestion()

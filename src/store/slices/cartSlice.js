@@ -12,7 +12,7 @@ export const cartSlice = createSlice({
     addCart: (state, action) => {
       if (state.value.length === 0) {
         state.value.push(action.payload)
-      } else if (state.value[0]._id === action.payload._id) {
+      } else if (state.value[0]._id !== action.payload._id) {
         state.value.push(action.payload)
       } else {
         return

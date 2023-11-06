@@ -41,11 +41,17 @@ const About = () => {
           </div>
           <div className='lg:flex justify-between my-10'>
             <div className='lg:w-[40%]'>
-              <img src="/assets/about-img2.png" className='w-full' alt="" />
+              <img src="/assets/owner_image-3.jpg" className='w-full' alt="" />
             </div>
             <div className='lg:w-[40%] my-auto'>
               <h1 className='text-3xl text-orange my-6 font-bold'>Brand Story</h1>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos deserunt nobis eius veritatis voluptatum provident veniam ullam unde. Quo nulla corporis laborum? Distinctio harum iste in quas deserunt dolorum quo a perspiciatis ab facere, tenetur, explicabo veniam, consectetur quis. Sapiente inventore, delectus quas accusamus ex ratione excepturi itaque ut eum libero? Fugiat provident, id sequi magnam facere ab voluptas excepturi natus cum repudiandae eius soluta deserunt corrupti doloribus sed!</p>
+              <p>Born from a humble beginning as Fig Health Store, our journey has been one of transformation, dedication, and an unyielding commitment to excellence.</p><br />
+              <p>Our story began with a mission to nourish lives through a diverse range of healthy food options. From gluten-free to low sugar, and organic products, we aimed to empower individuals to make wholesome choices for their bodies. </p><br />
+              <p>However, a turning point came over a decade ago, after our founder's personal experience with vitiligo. The challenges posed by vitiligo, a condition affecting skin pigmentation, became the catalyst for our transformation. </p>
+              <p>Fueled by a pursuit of answers, our founder embarked on research and discovery, ultimately crafting a unique formula that proved to be effective in managing vitiligo symptoms.</p>
+              <p>Word spread about our transformative product, leading us to embrace a broader purpose. With a leap of faith, we became FigTree Company, dedicating ourselves to crafting a diverse array of premium beauty, skin, and hair care products.</p><br />
+              <p>Rooted in natural ingredients and guided by sustainable practices, each creation reflects our dedication to your well-being.</p><br />
+              <p>Join us on this journey of self-care and rediscover your natural radiance with FigTree Company! </p>
             </div>
 
           </div>
