@@ -97,6 +97,10 @@ const Checkout = () => {
     },
   ]
 
+
+
+  
+
   useEffect(() => {
     // Get countries
     axios
@@ -123,7 +127,7 @@ const Checkout = () => {
 
   const getShipping = () => {
     if (state === "Lagos") {
-      setShippingCost(shipping[location].amount)
+       setShippingCost(shipping[location].amount)
     } else if (country === "Nigeria") {
       let totalQty = 0;
       for (let i = 0; i < cart.length; i++) {
@@ -141,19 +145,30 @@ const Checkout = () => {
     }
   }
 
+
+  
   useEffect(() => {
     getShipping()
   }, [step])
 
+
+
+   // TO SUM  CART ITEMS PRICES by their respective Item Quantity
   const getTotal = () => {
     return cart.map((item: { price: number; count: number; }) => item.price * item.count)
   }
 
+  // TO SUM ALL CART ITEMS subTotals for checkout [By charles]
   const subTotalSum = ()=>{
-    const total= getTotal();
-    let sum= total.reduce((prev:number, curr:number)=>{
+    const total:number[]= getTotal();
+    let sum =0
+    if(total.length){
+      sum= total.reduce((prev:number, curr:number)=>{
         return prev+curr
     })
+    }else{
+      sum = 0
+    }
 
     return sum
   }
@@ -168,7 +183,7 @@ const Checkout = () => {
   const config = {
     public_key: "FLWPUBK_TEST-e7c8f332b9d34b01b958cf4f4f643018-X",
     tx_ref: (new Date()).getTime().toString(),
-    amount: getTotal() + shippingCost,
+    amount: subTotalSum() + shippingCost,
     currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
     customer: {
@@ -189,9 +204,9 @@ const Checkout = () => {
     console.log("done");
     try {
       const { data } = await axios.post("order/delivery", {
-        name, phone, country, houseNumber: houseNo, streetName, landmark, city, state, zip, orderPrice: getTotal() + shippingCost
+        name, phone, country, houseNumber: houseNo, streetName, landmark, city, state, zip, orderPrice: subTotalSum() + shippingCost
       })
-      console.log(data)
+      // console.log(data)
     } catch (err) {
       console.log(err)
     }

@@ -29,17 +29,25 @@ const Cart = () => {
     }
   }
 
+
+  // TO SUM  CART ITEMS PRICES by their respective Item Quantity
   const getTotal = () => {
     return cart.map( (item: { price: number; count: number; }):number=>{
       return item.price * item.count  
     })
   }
 
+  // TO SUM ALL CART ITEMS subTotals for checkout [by CHARLES]
   const subTotalSum = ()=>{
-    const total= getTotal();
-    let sum= total.reduce((prev:number, curr:number)=>{
+    const total:number[]= getTotal();
+    let sum =0
+    if(total.length){
+      sum= total.reduce((prev:number, curr:number)=>{
         return prev+curr
     })
+    }else{
+      sum = 0
+    }
 
     return sum
   }
@@ -63,7 +71,7 @@ const Cart = () => {
             }
             <div className='border-t border-t-gray my-6'></div>
             <div className='float-right'>
-              <p className='font-bold text-xl'>Subtotal ({cart.length} item): N{subTotalSum()}</p>
+              <p className='font-bold text-xl'>Subtotal ({cart.length} item): N {subTotalSum()}</p>
               <p className='my-4'>Looking for more? <Link href={'/shop'}> <span className='text-orange'> Continue Shopping</span> </Link></p>
             </div>
 
