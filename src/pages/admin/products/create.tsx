@@ -154,7 +154,8 @@ const Create = () => {
             <option value="Category" className='hidden'>Category</option>
             <option value="lipcare">Lipcare</option>
             <option value="scrubs">Scrubs</option>
-            <option value="custom-oils">Custom Oils</option>
+            <option value="creams">Creams</option>
+            <option value="customized-oils">Customized Oils</option>
             <option value="moisturizers">Moisturizers</option>
             <option value="serums">Serums</option>
             <option value="face-cleaners">Face Cleaners</option>
@@ -162,6 +163,7 @@ const Create = () => {
             <option value="soaps">Soaps</option>
             <option value="face-wash">Face Wash</option>
             <option value="pure-carrier-oils">Pure Carrier Oils</option>
+            <option value="pure-oils">Pure Oils</option>
             <option value="sponges">Sponges</option>
             <option value="haircare">Haircare</option>
             <option value="pure-essential-oils">Pure Essential Oils</option>

@@ -98,11 +98,11 @@ export default function Home() {
   const category = [
     {
       img: "Group-115.png",
-      text: "Pure Butters"
+      text: "Pure-Butters"
     },
     {
       img: "Group-116.png",
-      text: "Pure Oils"
+      text: "Pure-Oils"
     },
     {
       img: "Group-117.png",
@@ -110,7 +110,7 @@ export default function Home() {
     },
     {
       img: "Group-118.png",
-      text: "Customized Oils"
+      text: "Customized-Oils"
     },
     {
       img: "Group-120.png",
